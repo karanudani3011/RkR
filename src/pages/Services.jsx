@@ -1,11 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
-import freightForwardingImage from '../assets/freight-forwarding.png';
-import breakbulkVideo from '../assets/5.mp4';
-import clearanceVideo from '../assets/6.mp4';
 import routeSurveyImage from '../assets/route-survey.png';
-import warehousingImage from '../assets/warehousing.png';
-import intercartingVideo from '../assets/9.mp4';
 import renewableVideo from '../assets/10.mp4';
 import './Services.css';
 
@@ -23,46 +18,10 @@ const serviceData = [
     video: '/videos/services/heavy.mp4', poster: '/videos/services/heavy.jpg',
   },
   {
-    id: 'multimodal', title: 'Multimodal Transport',
-    description: 'One booking, several modes. Road, rail and sea legs are joined together so your cargo keeps moving without handover gaps.',
-    points: ['Single point of contact end to end', 'Road, rail and sea connections', 'Live status at every transfer point'], photo: null,
-    video: '/videos/services/multimodal.mp4', poster: '/videos/services/multimodal.jpg',
-  },
-  {
-    id: 'freight', title: 'International Freight Forwarding',
-    description: 'Shipping abroad means paperwork, carriers and deadlines. We coordinate the whole chain from pickup at your door to the destination port.',
-    points: ['Import and export bookings', 'Documentation and cargo tracking', 'Door-to-port and door-to-door options'], photo: null,
-    media: { type: 'image', src: freightForwardingImage, alt: 'Aircraft flying over a container port' },
-  },
-  {
-    id: 'breakbulk', title: 'Breakbulk Chartering',
-    description: 'Cargo that does not fit a container still needs a ship. We help you charter vessels for steel, machinery and other loose project cargo.',
-    points: ['Vessel sourcing for non-containerised cargo', 'Port handling and stowage planning', 'Pickup and delivery linked to the voyage'], photo: null,
-    media: { type: 'video', src: breakbulkVideo },
-  },
-  {
-    id: 'customs', title: 'In-house Custom Clearance',
-    description: 'Our own clearance team keeps your cargo from waiting at the port. Fewer middlemen means faster answers when something needs fixing.',
-    points: ['Import and export documentation', 'Duty and tariff guidance', 'Quick resolution of clearance queries'], photo: null,
-    media: { type: 'video', src: clearanceVideo },
-  },
-  {
     id: 'survey', title: 'Route Survey & Modification',
     description: 'Before an oversized load moves, we drive the route. Low bridges, tight turns and weak culverts are found early and planned around.',
     points: ['Pre-movement route inspection', 'Clearance and weight-limit checks', 'Temporary road or obstacle modification support'], photo: null,
     media: { type: 'image', src: routeSurveyImage, alt: 'Route survey planning with maps, hard hat and walkie-talkies at a construction site' },
-  },
-  {
-    id: 'warehouse', title: 'Warehousing',
-    description: 'Safe, organised storage close to your route. Hold stock between shipments and release it when your customer is ready.',
-    points: ['Secure covered and open storage', 'Inward and outward stock records', 'Pick, pack and dispatch support'], photo: null,
-    media: { type: 'image', src: warehousingImage, alt: 'Warehouse with pallet racking, conveyor belts and a forklift' },
-  },
-  {
-    id: 'intercarting', title: 'Intercarting',
-    description: 'Short moves inside ports, plants and yards. We shuttle cargo between storage, loading points and the main haul without delay.',
-    points: ['Plant-to-port and yard shuttles', 'Flexible vehicles for short distances', 'Quick turnaround to keep lines moving'], photo: null,
-    media: { type: 'video', src: intercartingVideo },
   },
   {
     id: 'renewable', title: 'Renewable Energy Logistics',
@@ -74,10 +33,7 @@ const serviceData = [
 
 const skyTones = {
   wind: ['#a9d8f3', '#eff8fd'], heavy: ['#c8d7df', '#f4f7f8'],
-  multimodal: ['#bad7ee', '#f4f8fb'], freight: ['#8bc1e9', '#e7f4fc'],
-  breakbulk: ['#b5d4e8', '#eff6fa'], customs: ['#d2e2ec', '#f7f9fa'],
-  survey: ['#f2d8b6', '#fff5e7'], warehouse: ['#cfe1ef', '#f5f8fa'],
-  intercarting: ['#d2e1e7', '#f7f9fa'], renewable: ['#ffe3aa', '#fff8e6'],
+  survey: ['#f2d8b6', '#fff5e7'], renewable: ['#ffe3aa', '#fff8e6'],
 };
 
 function MediaBox({ title, media }) {
@@ -189,20 +145,8 @@ function SceneFeature({ id }) {
       return <g fill="none" stroke="#f8fbfc" strokeLinecap="round"><path d="M96 252V143m150 109V169" strokeWidth="4"/><g className="service-turbine-spin" style={{ transformOrigin: '96px 143px' }}><path d="M96 143V93m0 50 43 25m-43-25-43 25" strokeWidth="4" /></g><g className="service-turbine-spin slow" style={{ transformOrigin: '246px 169px' }}><path d="M246 169v-36m0 36 31 18m-31-18-31 18" strokeWidth="3" /></g></g>;
     case 'heavy':
       return <g><rect x="36" y="207" width="190" height="43" rx="20" fill="#7e8d97"/><rect x="45" y="204" width="150" height="12" rx="6" fill="#aab7bd"/><rect x="113" y="184" width="10" height="24" fill="#56636a"/><path d="M118 190l34-26 28 7-20 23Z" fill="#e6ad42"/><rect x="280" y="200" width="74" height="50" fill="#e9edef"/><path d="m274 200 43-20 43 20Z" fill="#d64b3e"/><circle cx="76" cy="248" r="8" fill="#59646b"/><circle cx="192" cy="248" r="8" fill="#59646b"/></g>;
-    case 'multimodal':
-      return <g><rect x="25" y="224" width="48" height="26" fill="#cf5145"/><rect x="74" y="224" width="48" height="26" fill="#668b9d"/><rect x="123" y="224" width="48" height="26" fill="#d4a75d"/><rect x="49" y="198" width="48" height="26" fill="#7996a5"/><rect x="98" y="198" width="48" height="26" fill="#cf5145"/><path d="M207 250V145h105m0 0v34m-105-34-32 36" fill="none" stroke="#4f5d65" strokeWidth="6"/><path d="m302 179 18 10-18 10" fill="none" stroke="#4f5d65" strokeWidth="5"/></g>;
-    case 'freight':
-      return <g><path d="M22 219Q196 118 374 219" fill="none" stroke="#fff" strokeWidth="2" strokeDasharray="5 7" opacity=".8"/><g className="service-plane"><path d="m-12 78 52 12-52 12 8-12z" fill="#fff"/><path d="m7 90-13-17m13 17L-6 107" fill="none" stroke="#fff" strokeWidth="4"/></g><rect x="286" y="221" width="48" height="29" fill="#6b8da2"/><rect x="336" y="221" width="42" height="29" fill="#d26653"/></g>;
-    case 'breakbulk':
-      return <g><path d="M24 231h255l-22 24H53Z" fill="#394f5c"/><path d="M24 231h255" stroke="#d64b3e" strokeWidth="4"/><rect x="66" y="208" width="42" height="23" fill="#d9b363"/><rect x="114" y="214" width="34" height="17" fill="#d9dfe1"/><path d="M202 231V151h62m-4 0 19 75m-77-75-31 25" fill="none" stroke="#59666e" strokeWidth="5"/><path d="M0 258q25-7 50 0t50 0 50 0 50 0 50 0 50 0 50 0 50 0v18H0Z" fill="#79a8be" opacity=".72"/></g>;
-    case 'customs':
-      return <g><rect x="57" y="191" width="74" height="59" fill="#f1f4f5"/><rect x="50" y="183" width="88" height="10" fill="#d64b3e"/><rect x="73" y="204" width="30" height="27" fill="#91c6df"/><path d="M130 232h139" stroke="#fff" strokeWidth="7"/><path d="M158 232h22m20 0h22m20 0h22" stroke="#d64b3e" strokeWidth="6"/><rect x="260" y="225" width="8" height="25" fill="#52626c"/><path d="M269 225 359 196" fill="none" stroke="#d64b3e" strokeWidth="7" strokeLinecap="round"/><rect x="303" y="215" width="67" height="35" fill="#668b9d"/></g>;
     case 'survey':
       return <g><path d="M5 225h390v9H5Z" fill="#aebbc0"/><path d="M57 234v32m104-32v32m105-32v32m75-32v32" stroke="#7e9097" strokeWidth="10"/><path d="M57 225q52-55 104 0m0 0q52-55 105 0m0 0q38-42 75 0" fill="none" stroke="#899da5" strokeWidth="6"/><path d="M20 218h360" stroke="#e7ecee" strokeWidth="4"/></g>;
-    case 'warehouse':
-      return <g><rect x="35" y="185" width="210" height="67" fill="#e7ecee"/><path d="m29 185 111-30 111 30Z" fill="#aebfc7"/><path d="M50 203h45v49H50zm58 0h45v49h-45zm58 0h45v49h-45z" fill="#90a5ae"/><rect x="270" y="224" width="42" height="28" fill="#c69a62"/><rect x="314" y="224" width="42" height="28" fill="#d8b47b"/><rect x="292" y="196" width="42" height="28" fill="#c69a62"/></g>;
-    case 'intercarting':
-      return <g><rect x="25" y="222" width="52" height="28" fill="#6c8da0"/><rect x="79" y="222" width="52" height="28" fill="#d26653"/><rect x="25" y="194" width="52" height="28" fill="#d4dfe3"/><rect x="266" y="222" width="52" height="28" fill="#d7ad62"/><rect x="320" y="222" width="52" height="28" fill="#668b9d"/><path d="M151 211h87m-17-11 18 11-18 11" fill="none" stroke="#fff" strokeWidth="5" strokeLinecap="round" strokeLinejoin="round"/></g>;
     case 'renewable':
       return <g><g fill="#3b6483" stroke="#9db9ca" strokeWidth="2"><path d="m25 242 32-31h62l-32 31Z"/><path d="m133 242 32-31h62l-32 31Z"/><path d="m241 242 32-31h62l-32 31Z"/></g><path d="M42 242v11m108-11v11m108-11v11" stroke="#71838b" strokeWidth="4"/><path d="M25 252h280" stroke="#87989c" strokeWidth="3"/></g>;
     default: return null;
@@ -211,7 +155,7 @@ function SceneFeature({ id }) {
 
 function ServiceScene({ service, index }) {
   const mediaVideo = service.media?.type === 'video' ? service.media.src : null;
-  const usesMediaBox = ['customs', 'survey', 'warehouse', 'intercarting', 'renewable'].includes(service.id);
+  const usesMediaBox = ['survey', 'renewable'].includes(service.id);
   const [top, bottom] = skyTones[service.id];
   const gradientId = `service-sky-${service.id}`;
 

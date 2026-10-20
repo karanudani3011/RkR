@@ -56,7 +56,6 @@ body:has(.services-page) .header .header-nav a.active { color: #D61F10; border-b
 .service-sun-rays { animation: services-sun-turn 28s linear infinite; }
 .service-turbine-spin { animation: services-turbine-turn 7s linear infinite; }
 .service-turbine-spin.slow { animation-duration: 9s; }
-.service-plane { animation: services-plane-fly 10s linear infinite; }
 
 .services-copy { position: relative; }
 .services-number { display: inline-block; margin-bottom: 12px; color: #D61F10; font-size: 12px; font-weight: 800; letter-spacing: .16em; }
@@ -80,7 +79,6 @@ body:has(.services-page) .header .header-nav a.active { color: #D61F10; border-b
 @keyframes services-cloud-drift { from { transform: translateX(-24px); } to { transform: translateX(50px); } }
 @keyframes services-sun-turn { to { transform: rotate(360deg); } }
 @keyframes services-turbine-turn { to { transform: rotate(360deg); } }
-@keyframes services-plane-fly { from { transform: translateX(-55px); } to { transform: translateX(410px); } }
 
 @media (max-width: 760px) {
   .services-hero { padding: 104px 0 30px; }
@@ -96,6 +94,6 @@ body:has(.services-page) .header .header-nav a.active { color: #D61F10; border-b
 
 @media (prefers-reduced-motion: reduce) {
   .service-reveal { opacity: 1; transform: none; transition: none; }
-  .services-road::after,.services-truck,.services-wheel,.service-cloud,.service-sun-rays,.service-turbine-spin,.service-plane { animation: none !important; }
+  .services-road::after,.services-truck,.services-wheel,.service-cloud,.service-sun-rays,.service-turbine-spin { animation: none !important; }
   .services-chip-list a,.services-quote { transition: none; }
 }
