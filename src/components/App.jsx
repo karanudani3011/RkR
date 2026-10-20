@@ -5,6 +5,8 @@ import Home from '../pages/Home.jsx';
 import ContactPage from '../pages/ContactPage.jsx';
 import ServicesPage from '../pages/Services.jsx';
 import SafetyPage from '../pages/SafetyPage.jsx';
+import WhoWeArePage from '../pages/WhoWeAre.jsx';
+import OurClientsPage from '../pages/OurClients.jsx';
 import { ScrollToTop, HashScroll } from './ScrollToTop.jsx';
 
 export default function App() {
@@ -17,6 +19,8 @@ export default function App() {
         <Route path="/" element={<Home />} />
         <Route path="/contact" element={<ContactPage />} />
         <Route path="/services" element={<ServicesPage />} />
+        <Route path="/about/who-we-are" element={<WhoWeArePage />} />
+        <Route path="/about/our-clients" element={<OurClientsPage />} />
         <Route path="/about/safety" element={<SafetyPage />} />
         <Route path="*" element={<Home />} />
       </Routes>

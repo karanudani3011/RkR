@@ -4,8 +4,8 @@ import aboutMenuImage from '../assets/freight-forwarding.png';
 import './Header.css';
 
 const aboutMenu = [
-  { label: 'Who We Are?', href: '#who-we-are' },
-  { label: 'Our Clients', href: '#our-clients' },
+  { label: 'Who We Are?', href: '/about/who-we-are', route: true },
+  { label: 'Our Clients', href: '/about/our-clients', route: true },
   { label: 'Team', href: '#team' },
   { label: 'Safety', href: '/about/safety', route: true },
   { label: 'Sustainability', href: '#sustainability' },
