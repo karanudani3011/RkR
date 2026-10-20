@@ -1,0 +1,242 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#c8160e">
+  <title>Contact Us | RadheKrishna Roadways</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --red: #c8160e;
+      --red-dark: #8e0e09;
+      --ink: #202126;
+      --muted: #666a73;
+      --road: #252a32;
+      --truck-blue: #243b5a;
+      --truck-amber: #f4b52b;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-synthesis: none;
+      text-rendering: optimizeLegibility;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+    html { min-width: 320px; scroll-behavior: smooth; }
+    body { margin: 0; min-width: 320px; overflow-x: clip; background: #fff; color: var(--ink); }
+    a { color: inherit; }
+
+    .contact-hero {
+      min-height: 270px;
+      padding: 42px max(24px, calc((100vw - 1160px) / 2)) 48px;
+      color: #fff;
+      background: linear-gradient(118deg, var(--red) 0%, #ad120b 55%, var(--red-dark) 100%);
+    }
+    .breadcrumb { display: flex; align-items: center; gap: 10px; margin: 0 0 24px; color: rgba(255,255,255,.78); font-size: 13px; }
+    .breadcrumb a { color: #fff; text-decoration: none; }
+    .breadcrumb a:hover { text-decoration: underline; text-underline-offset: 3px; }
+    .breadcrumb-separator { color: rgba(255,255,255,.56); }
+    .contact-hero h1 { margin: 0 0 12px; font-size: clamp(38px, 5.2vw, 62px); line-height: 1.04; letter-spacing: -.045em; font-weight: 800; }
+    .contact-hero p:last-child { max-width: 620px; margin: 0; color: rgba(255,255,255,.9); font-size: clamp(15px, 1.6vw, 18px); line-height: 1.6; }
+
+    .journey-road {
+      position: relative;
+      z-index: 1;
+      height: 112px;
+      overflow: hidden;
+      background: var(--road);
+      border-top: 5px solid #3e444d;
+      border-bottom: 5px solid #181c22;
+    }
+    .road-dashes {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 65px;
+      height: 4px;
+      background: repeating-linear-gradient(90deg, #fff 0 48px, transparent 48px 94px);
+      opacity: .9;
+    }
+    .stop { position: absolute; top: 17px; z-index: 2; display: grid; justify-items: center; gap: 5px; transform: translateX(-50%); color: #fff; font-size: 11px; font-weight: 700; letter-spacing: .02em; }
+    .stop::after { content: ""; grid-row: 1; width: 12px; height: 12px; border: 3px solid #fff; border-radius: 50%; background: var(--red); box-shadow: 0 0 0 4px rgba(255,255,255,.13); }
+    .stop span { grid-row: 2; }
+    .stop-call { left: 17%; }
+    .stop-whatsapp { left: 50%; }
+    .stop-email { left: 83%; }
+    .truck-track { position: absolute; inset: 0; pointer-events: none; }
+    .mini-truck { position: absolute; left: 0; bottom: 8px; width: 94px; height: 46px; transform: translateX(-110px); filter: drop-shadow(0 3px 3px rgba(0,0,0,.36)); will-change: transform; }
+    .mini-truck .trailer { fill: var(--truck-blue); }
+    .mini-truck .cab { fill: var(--truck-amber); }
+    .mini-truck .window { fill: #cde8f7; }
+    .mini-truck .wheel { fill: #14181e; stroke: #bfc6cf; stroke-width: 2; }
+    .mini-truck .headlight { fill: #ffeaa0; }
+
+    .contact-cards-section { position: relative; isolation: isolate; padding: 42px 24px 68px; overflow: hidden; background: #fff; }
+    .cards-watermark { position: absolute; z-index: -1; top: 4px; right: max(18px, calc((100vw - 1160px) / 2)); color: #f7e9e7; font-size: clamp(150px, 24vw, 310px); line-height: .9; font-weight: 900; letter-spacing: -.12em; pointer-events: none; user-select: none; }
+    .contact-cards { position: relative; width: min(1160px, 100%); margin: 0 auto; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
+    .contact-card {
+      position: relative;
+      z-index: 1;
+      min-width: 0;
+      min-height: 148px;
+      display: flex;
+      align-items: center;
+      gap: 17px;
+      padding: 24px;
+      overflow: hidden;
+      border: 1px solid #eee5e3;
+      border-radius: 16px;
+      background: #fff;
+      box-shadow: 0 12px 34px rgba(35,24,23,.08);
+      text-decoration: none;
+      clip-path: inset(0 100% 0 0 round 16px);
+      visibility: hidden;
+      pointer-events: none;
+      transition: box-shadow .25s, transform .25s;
+    }
+    .contact-card.is-revealed { visibility: visible; }
+    .contact-card.is-clickable { pointer-events: auto; }
+    .contact-card:hover { transform: translateY(-4px); box-shadow: 0 17px 38px rgba(35,24,23,.13); }
+    .card-icon { flex: 0 0 52px; width: 52px; height: 52px; display: grid; place-items: center; border-radius: 50%; background: var(--red); color: #fff; }
+    .card-icon svg { width: 23px; height: 23px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+    .card-copy { display: grid; gap: 5px; min-width: 0; }
+    .card-copy strong { color: var(--ink); font-size: 17px; }
+    .card-copy span { overflow-wrap: anywhere; color: var(--muted); font-size: 14px; }
+
+    .journey.is-running .contact-card { clip-path: inset(0 100% 0 0 round 16px); }
+    .journey.is-running .contact-card.is-revealed { visibility: visible; }
+
+    @media (max-width: 720px) {
+      .contact-hero { min-height: 250px; padding: 34px 20px 38px; }
+      .breadcrumb { margin-bottom: 21px; }
+      .journey-road { height: 100px; }
+      .road-dashes { top: 62px; }
+      .stop { top: 13px; font-size: 10px; }
+      .stop-call { left: 16%; }
+      .stop-whatsapp { left: 50%; }
+      .stop-email { left: 84%; }
+      .mini-truck { width: 78px; height: 40px; bottom: 7px; }
+      .contact-cards-section { padding: 28px 18px 48px; }
+      .cards-watermark { top: 38px; right: -8px; font-size: 180px; }
+      .contact-cards { grid-template-columns: 1fr; gap: 13px; }
+      .contact-card { min-height: 104px; padding: 18px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .contact-card { transition: none; }
+      .mini-truck { will-change: auto; }
+    }
+  </style>
+</head>
+<body>
+  <main class="journey">
+    <section class="contact-hero" aria-labelledby="contact-title">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="/">Home</a><span class="breadcrumb-separator" aria-hidden="true">/</span><span aria-current="page">Contact Us</span>
+      </nav>
+      <h1 id="contact-title">Let's move your cargo.</h1>
+      <p>Tell us your load and route. We'll call you back with the best rate.</p>
+    </section>
+
+    <div class="journey-road" aria-label="Truck route with Call, WhatsApp and Email stops">
+      <div class="stop stop-call"><span>Call</span></div>
+      <div class="stop stop-whatsapp"><span>WhatsApp</span></div>
+      <div class="stop stop-email"><span>Email</span></div>
+      <div class="road-dashes" aria-hidden="true"></div>
+      <div class="truck-track" aria-hidden="true">
+        <svg class="mini-truck" viewBox="0 0 116 56" role="presentation">
+          <path d="M3 34h61v14H3z" class="trailer" />
+          <path d="M64 28h25l15 13v7H64z" class="cab" />
+          <path d="M70 31h16l10 9H70z" class="window" />
+          <path d="M103 42h8v4h-8z" class="headlight" />
+          <circle cx="23" cy="48" r="6" class="wheel" />
+          <circle cx="77" cy="48" r="6" class="wheel" />
+        </svg>
+      </div>
+    </div>
+
+    <section class="contact-cards-section" aria-label="Contact options">
+      <div class="cards-watermark" aria-hidden="true">RKR</div>
+      <div class="contact-cards">
+        <a class="contact-card" data-card="call" href="tel:+919924477779" aria-label="Call us at +91 99244 77779">
+          <span class="card-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6.7 3.5 9.5 7l-1.8 2a15 15 0 0 0 7.4 7.4l2-1.8 3.5 2.8-.8 3.1c-.2.7-.9 1.1-1.6 1C9.2 19.9 4.1 14.8 2.5 6c-.1-.7.3-1.4 1-1.6l3.2-.9Z" /></svg></span>
+          <span class="card-copy"><strong>Call us</strong><span>+91 99244 77779</span></span>
+        </a>
+        <a class="contact-card" data-card="whatsapp" href="https://wa.me/919924477779" target="_blank" rel="noreferrer" aria-label="Chat with our team on WhatsApp">
+          <span class="card-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M20 11.6a8 8 0 0 1-11.8 7L4 20l1.4-4A8 8 0 1 1 20 11.6Z" /><path d="M9 8.3c.4-.5.8-.4 1.1.1l.8 1.3c.2.3.1.6-.2.9l-.5.5c.6 1.1 1.4 1.8 2.5 2.4l.5-.6c.2-.3.5-.4.8-.2l1.4.7c.5.3.6.7.2 1.1-.5.6-1.2.9-1.9.8-2.6-.4-5.4-3-5.8-5.6-.1-.6.4-1.1 1.1-1.4Z" /></svg></span>
+          <span class="card-copy"><strong>WhatsApp</strong><span>Chat with our team</span></span>
+        </a>
+        <a class="contact-card" data-card="email" href="mailto:info@yourdomain.com" aria-label="Email info@yourdomain.com">
+          <span class="card-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2" /><path d="m4 7 8 6 8-6" /></svg></span>
+          <span class="card-copy"><strong>Email</strong><span>info@yourdomain.com</span></span>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    (() => {
+      const root = document.querySelector('.journey');
+      const road = document.querySelector('.journey-road');
+      const truck = document.querySelector('.mini-truck');
+      const cards = [...document.querySelectorAll('.contact-card')];
+      if (!root || !road || !truck || cards.length !== 3) return;
+
+      const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      root.classList.add('is-running');
+      cards.forEach((card) => {
+        card.setAttribute('aria-hidden', 'true');
+        card.setAttribute('inert', '');
+      });
+
+      const finish = () => {
+        truck.style.transform = `translateX(${road.clientWidth}px)`;
+        cards.forEach((card) => {
+          card.style.clipPath = 'inset(0 0 0 0 round 16px)';
+          card.classList.add('is-revealed', 'is-clickable');
+          card.removeAttribute('aria-hidden');
+          card.removeAttribute('inert');
+        });
+        root.classList.remove('is-running');
+      };
+
+      if (reducedMotion) {
+        finish();
+        return;
+      }
+
+      const startAt = [0.12, 0.43, 0.74];
+      const finishAt = [0.36, 0.69, 1];
+      const duration = 15000;
+      let startTime;
+
+      const animate = (time) => {
+        if (startTime === undefined) startTime = time;
+        const progress = Math.min(1, (time - startTime) / duration);
+        const x = -truck.getBoundingClientRect().width + progress * (road.clientWidth + truck.getBoundingClientRect().width);
+        truck.style.transform = `translateX(${x}px)`;
+
+        cards.forEach((card, index) => {
+          const reveal = Math.max(0, Math.min(1, (progress - startAt[index]) / (finishAt[index] - startAt[index])));
+          if (reveal > 0) card.classList.add('is-revealed');
+          card.style.clipPath = `inset(0 ${(1 - reveal) * 100}% 0 0 round 16px)`;
+          if (reveal >= 1) {
+            card.classList.add('is-clickable');
+            card.removeAttribute('aria-hidden');
+            card.removeAttribute('inert');
+          }
+        });
+
+        if (progress < 1) window.requestAnimationFrame(animate);
+        else finish();
+      };
+
+      window.requestAnimationFrame(animate);
+      window.addEventListener('resize', () => {
+        if (!root.classList.contains('is-running')) finish();
+      }, { passive: true });
+    })();
+  </script>
+</body>
+</html>
