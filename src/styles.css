@@ -191,6 +191,5 @@ h1,h2,h3,h4{color:var(--text-dark)}
 
 .fst .heavy-cab{--cab-stripe:var(--red)}
 
-.home-contact-page-link{margin:14px 0 0;color:var(--text-dark);font-size:14px}.home-contact-page-link a{color:var(--red);font-weight:700}.home-contact-page-link a:hover{text-decoration:underline}
 .home-services-page-link{margin:24px 0 0;text-align:center}.home-services-page-link a{display:inline-flex;align-items:center;min-height:42px;padding:9px 19px;border:1px solid var(--red);border-radius:999px;color:var(--red);font-size:14px;font-weight:750;text-decoration:none;transition:background .2s,color .2s}.home-services-page-link a:hover,.home-services-page-link a:focus-visible{background:var(--red);color:var(--white)}
 

@@ -70,7 +70,7 @@ function QuoteCta() {
     form?.addEventListener('submit', prevent);
     return () => form?.removeEventListener('submit', prevent);
   }, []);
-  return <div ref={host}><Html name="quote" /><p className="home-contact-page-link">Or <Link to="/contact">open the full contact page</Link></p></div>;
+  return <div ref={host}><Html name="quote" /></div>;
 }
 
 export default function Home() {
