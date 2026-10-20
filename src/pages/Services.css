@@ -47,6 +47,11 @@ body:has(.services-page) .header .header-nav a.active { color: #D61F10; border-b
 .services-video { display: block; width: 100%; height: 100%; object-fit: contain; }
 .services-video-fallback { position: absolute; z-index: 1; inset: 0; display: block; width: 100%; height: 100%; object-fit: contain; }
 .services-video-fallback-label { display: grid; place-items: center; padding: 24px; color: #fff; text-align: center; }
+
+/* Lowbed trailer video (Heavy & Specialised Transport) */
+.services-panel-lowbed { aspect-ratio: 16 / 9; border: 1px solid #e4e4ea; border-radius: 16px; overflow: hidden; box-shadow: 0 8px 32px rgba(0,0,0,.12); background: #0d0d0d; }
+.services-video-lowbed { display: block; width: 100%; height: 100%; object-fit: cover; }
+
 .services-road { position: absolute; z-index: 2; right: 0; bottom: 0; left: 0; height: 34px; background: #2a2b2f; }
 .services-road::after { content: ""; position: absolute; top: 16px; right: 0; left: 0; height: 2px; background: repeating-linear-gradient(90deg,#fff 0 22px,transparent 22px 40px); animation: services-road-dash 1.2s linear infinite; }
 .services-truck { position: absolute; z-index: 3; bottom: 14px; left: -110px; width: 92px; height: auto; overflow: visible; filter: drop-shadow(0 4px 3px rgba(0,0,0,.2)); animation: services-truck-drive 8s linear infinite; animation-delay: var(--truck-delay,0s); }
@@ -56,7 +61,6 @@ body:has(.services-page) .header .header-nav a.active { color: #D61F10; border-b
 .service-sun-rays { animation: services-sun-turn 28s linear infinite; }
 .service-turbine-spin { animation: services-turbine-turn 7s linear infinite; }
 .service-turbine-spin.slow { animation-duration: 9s; }
-.service-plane { animation: services-plane-fly 10s linear infinite; }
 
 .services-copy { position: relative; }
 .services-number { display: inline-block; margin-bottom: 12px; color: #D61F10; font-size: 12px; font-weight: 800; letter-spacing: .16em; }
@@ -80,7 +84,6 @@ body:has(.services-page) .header .header-nav a.active { color: #D61F10; border-b
 @keyframes services-cloud-drift { from { transform: translateX(-24px); } to { transform: translateX(50px); } }
 @keyframes services-sun-turn { to { transform: rotate(360deg); } }
 @keyframes services-turbine-turn { to { transform: rotate(360deg); } }
-@keyframes services-plane-fly { from { transform: translateX(-55px); } to { transform: translateX(410px); } }
 
 @media (max-width: 760px) {
   .services-hero { padding: 104px 0 30px; }
@@ -89,6 +92,7 @@ body:has(.services-page) .header .header-nav a.active { color: #D61F10; border-b
   .services-row:nth-child(even) .services-panel,.services-row:nth-child(even) .services-copy { order: initial; }
   .services-copy { order: 2; }
   .services-panel { order: 1; }
+  .services-panel-lowbed { order: 1; aspect-ratio: 16/9; width: 100%; }
   .services-panel-video.is-portrait-video { max-width: 300px; }
   .services-copy h2 { font-size: 27px; }
   .services-chip-list { width: calc(100% - 32px); }
@@ -96,6 +100,7 @@ body:has(.services-page) .header .header-nav a.active { color: #D61F10; border-b
 
 @media (prefers-reduced-motion: reduce) {
   .service-reveal { opacity: 1; transform: none; transition: none; }
-  .services-road::after,.services-truck,.services-wheel,.service-cloud,.service-sun-rays,.service-turbine-spin,.service-plane { animation: none !important; }
+  .services-road::after,.services-truck,.services-wheel,.service-cloud,.service-sun-rays,.service-turbine-spin { animation: none !important; }
   .services-chip-list a,.services-quote { transition: none; }
+  .services-video-lowbed { animation: none !important; }
 }
