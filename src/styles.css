@@ -115,6 +115,9 @@ footer{padding:26px 0;font-size:13px;color:color-mix(in srgb,var(--text-dark) 65
 .fsp h3{margin:0 0 8px;font-size:20px}.fsp dl{margin:0 0 12px;display:grid;grid-template-columns:auto 1fr;gap:4px 14px;font-size:14px}.fsp dt{color:color-mix(in srgb,var(--text-dark) 65%,var(--white))}.fsp dd{margin:0;font-weight:600}
 .fmt{height:10px;border-radius:10px;background:color-mix(in srgb,var(--red) 15%,var(--white));overflow:hidden}.fmt i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--red-light),var(--red));transition:width .4s}
 .fsp small,.fnt{color:color-mix(in srgb,var(--text-dark) 65%,var(--white));font-size:12px;display:block;margin:6px 0 14px}.fnt{margin:10px 0 0}
+.fleet-heavy-note{margin-top:14px;padding:11px 15px;border-radius:10px;background:color-mix(in srgb,var(--red) 7%,var(--white));border:1px solid color-mix(in srgb,var(--red) 24%,var(--white));color:var(--text-dark);font-size:13px;line-height:1.45}
+.fleet-heavy-note a{color:var(--red);font-weight:700;text-decoration:underline;text-underline-offset:2px;transition:color .2s ease}
+.fleet-heavy-note a:hover{color:var(--red-dark)}
 @media(max-width:860px){.fl{grid-template-columns:1fr}}
 @media(prefers-reduced-motion:reduce){.st *{animation-duration:.01s!important;animation-delay:0s!important;animation-iteration-count:1!important}}
 @media(prefers-reduced-motion:reduce){.ph img{animation:none}.js .rv{opacity:1;transform:none}.cl,.rd2,.cr,.rt,.bx,.ping,.ib:after,.L,.sp,.rig,.rig svg,.sm,.streak,.t,.road:after{animation:none}}

@@ -17,12 +17,6 @@ const serviceData = [
     video: '/videos/services/wind.mp4', poster: '/videos/services/wind.jpg',
   },
   {
-    id: 'heavy', title: 'Heavy & Specialised Transport',
-    description: 'Oversized machinery and project cargo need more than a bigger truck. We match the right trailer to the weight, height and width of your load.',
-    points: ['Low-bed, multi-axle and hydraulic trailers', 'Load securing and lashing plans', 'Permits and route approvals handled for you'], photo: null,
-    video: '/videos/services/heavy.mp4', poster: '/videos/services/heavy.jpg',
-  },
-  {
     id: 'multimodal', title: 'Multimodal Transport',
     description: 'One booking, several modes. Road, rail and sea legs are joined together so your cargo keeps moving without handover gaps.',
     points: ['Single point of contact end to end', 'Road, rail and sea connections', 'Live status at every transfer point'], photo: null,
@@ -73,7 +67,7 @@ const serviceData = [
 ];
 
 const skyTones = {
-  wind: ['#a9d8f3', '#eff8fd'], heavy: ['#c8d7df', '#f4f7f8'],
+  wind: ['#a9d8f3', '#eff8fd'],
   multimodal: ['#bad7ee', '#f4f8fb'], freight: ['#8bc1e9', '#e7f4fc'],
   breakbulk: ['#b5d4e8', '#eff6fa'], customs: ['#d2e2ec', '#f7f9fa'],
   survey: ['#f2d8b6', '#fff5e7'], warehouse: ['#cfe1ef', '#f5f8fa'],
@@ -187,8 +181,6 @@ function SceneFeature({ id }) {
   switch (id) {
     case 'wind':
       return <g fill="none" stroke="#f8fbfc" strokeLinecap="round"><path d="M96 252V143m150 109V169" strokeWidth="4"/><g className="service-turbine-spin" style={{ transformOrigin: '96px 143px' }}><path d="M96 143V93m0 50 43 25m-43-25-43 25" strokeWidth="4" /></g><g className="service-turbine-spin slow" style={{ transformOrigin: '246px 169px' }}><path d="M246 169v-36m0 36 31 18m-31-18-31 18" strokeWidth="3" /></g></g>;
-    case 'heavy':
-      return <g><rect x="36" y="207" width="190" height="43" rx="20" fill="#7e8d97"/><rect x="45" y="204" width="150" height="12" rx="6" fill="#aab7bd"/><rect x="113" y="184" width="10" height="24" fill="#56636a"/><path d="M118 190l34-26 28 7-20 23Z" fill="#e6ad42"/><rect x="280" y="200" width="74" height="50" fill="#e9edef"/><path d="m274 200 43-20 43 20Z" fill="#d64b3e"/><circle cx="76" cy="248" r="8" fill="#59646b"/><circle cx="192" cy="248" r="8" fill="#59646b"/></g>;
     case 'multimodal':
       return <g><rect x="25" y="224" width="48" height="26" fill="#cf5145"/><rect x="74" y="224" width="48" height="26" fill="#668b9d"/><rect x="123" y="224" width="48" height="26" fill="#d4a75d"/><rect x="49" y="198" width="48" height="26" fill="#7996a5"/><rect x="98" y="198" width="48" height="26" fill="#cf5145"/><path d="M207 250V145h105m0 0v34m-105-34-32 36" fill="none" stroke="#4f5d65" strokeWidth="6"/><path d="m302 179 18 10-18 10" fill="none" stroke="#4f5d65" strokeWidth="5"/></g>;
     case 'freight':
@@ -284,7 +276,30 @@ function ServiceRow({ service, index }) {
 export default function ServicesPage() {
   const pageRef = useRef(null);
   const chipsRef = useRef(null);
-  const [activeService, setActiveService] = useState('wind');
+  const [activeService, setActiveService] = useState(serviceData[0]?.id || 'wind');
+
+  useEffect(() => {
+    // If URL has a hash or query for the removed service or any unknown service, fall back to first service
+    const handleHashOrQuery = () => {
+      const rawHash = window.location.hash.replace(/^#/, '');
+      const urlParams = new URLSearchParams(window.location.search);
+      const queryService = urlParams.get('service');
+      const requested = rawHash || queryService;
+
+      if (requested) {
+        const match = serviceData.find((s) => s.id === requested);
+        if (match) {
+          setActiveService(match.id);
+        } else {
+          setActiveService(serviceData[0].id);
+        }
+      }
+    };
+
+    handleHashOrQuery();
+    window.addEventListener('hashchange', handleHashOrQuery);
+    return () => window.removeEventListener('hashchange', handleHashOrQuery);
+  }, []);
 
   useEffect(() => {
     document.title = 'Services | RadheKrishna Roadways';
@@ -340,7 +355,16 @@ export default function ServicesPage() {
 
       <nav className="services-chip-nav" aria-label="Jump to a service">
         <div className="services-chip-list" ref={chipsRef}>
-          {serviceData.map((service) => <a className={activeService === service.id ? 'is-active' : ''} href={`#${service.id}`} key={service.id}>{service.title}</a>)}
+          {serviceData.map((service) => (
+            <a
+              className={activeService === service.id ? 'is-active' : ''}
+              href={`#${service.id}`}
+              key={service.id}
+              onClick={() => setActiveService(service.id)}
+            >
+              {service.title}
+            </a>
+          ))}
         </div>
       </nav>
 

@@ -1,24 +1,60 @@
 import { useState } from 'react';
-import { fleet } from '../data/fleet.js';
+import { Link } from 'react-router-dom';
+
+const TRUCKS = [
+  { id: "open", icon: "🚛", name: "Open Body", minTons: 1, maxTons: 9, capacity: "Up to 9 tons", body: "Open flat / high-side body", bestFor: "Bulk goods, construction material, general cargo" },
+  { id: "container", icon: "📦", name: "Container Truck", minTons: 9, maxTons: 18, capacity: "9 to 18 tons", body: "Closed container body", bestFor: "Secure, weather-protected and long-distance cargo" },
+  { id: "heavy", icon: "🏗️", name: "Heavy Duty Trailer", minTons: 18, maxTons: 300, capacity: "18 to 300 tons", body: "Multi-axle hydraulic low-bed trailer", bestFor: "Heavy machinery, ODC and oversized cargo" },
+];
+
+const LOAD_STEPS = (() => {
+  const steps = [];
+  for (let i = 1; i <= 30; i += 1) steps.push(i);
+  for (let i = 35; i <= 100; i += 5) steps.push(i);
+  for (let i = 110; i <= 300; i += 10) steps.push(i);
+  return steps;
+})();
 
 export default function Fleet() {
   const [load, setLoad] = useState(5);
   const [selected, setSelected] = useState(0);
 
-  const currentTruck = fleet[selected] || fleet[0];
-  const p = Math.min(100, Math.round((load / currentTruck.x) * 100));
+  const selectedTruck = TRUCKS[selected] || TRUCKS[0];
+  const percent = Math.min(100, Math.round((load / selectedTruck.maxTons) * 100));
 
   const handleRange = (e) => {
-    const value = Number(e.target.value);
-    setLoad(value);
-    const nextIndex = value <= 7 ? 0 : value <= 18 ? 1 : 2;
-    setSelected(nextIndex);
+    const stepIdx = Number(e.target.value);
+    const nextLoad = LOAD_STEPS[stepIdx] ?? 1;
+    setLoad(nextLoad);
+
+    if (nextLoad >= 18) {
+      setSelected(2);
+    } else if (nextLoad > 9) {
+      setSelected(1);
+    } else {
+      setSelected(0);
+    }
   };
 
   const handleTab = (index) => {
     setSelected(index);
-    setLoad(fleet[index].m);
+    setLoad(TRUCKS[index].minTons);
   };
+
+  const currentStepIndex = (() => {
+    const idx = LOAD_STEPS.indexOf(load);
+    if (idx !== -1) return idx;
+    let closest = 0;
+    let minDiff = Infinity;
+    LOAD_STEPS.forEach((val, i) => {
+      const diff = Math.abs(val - load);
+      if (diff < minDiff) {
+        minDiff = diff;
+        closest = i;
+      }
+    });
+    return closest;
+  })();
 
   return (
     <section id="fleet">
@@ -135,40 +171,41 @@ export default function Fleet() {
             <input
               id="ld"
               type="range"
-              min="1.5"
-              max="30"
-              step="0.5"
-              value={load}
+              min="0"
+              max={LOAD_STEPS.length - 1}
+              step="1"
+              value={currentStepIndex}
               onChange={handleRange}
+              aria-label="Select load in tons"
             />
 
             <div className="ftabs">
-              {fleet.map((item, idx) => (
+              {TRUCKS.map((item, idx) => (
                 <button
-                  key={item.n}
+                  key={item.id}
                   className={`ftab ${selected === idx ? 'on' : ''}`}
                   type="button"
                   onClick={() => handleTab(idx)}
                 >
-                  {item.icon} {item.n.replace(' Truck', '').replace(' Trailer', '')}
+                  {item.icon} {item.name}
                 </button>
               ))}
             </div>
 
             <div className="fsp">
-              <h3 id="sn">{currentTruck.n}</h3>
+              <h3 id="sn">{selectedTruck.name}</h3>
               <dl>
                 <dt>Capacity</dt>
-                <dd id="sc">{currentTruck.c}</dd>
+                <dd id="sc">{selectedTruck.capacity}</dd>
                 <dt>Body</dt>
-                <dd id="sbd">{currentTruck.b}</dd>
+                <dd id="sbd">{selectedTruck.body}</dd>
                 <dt>Best for</dt>
-                <dd id="sf">{currentTruck.f}</dd>
+                <dd id="sf">{selectedTruck.bestFor}</dd>
               </dl>
               <div className="fmt">
-                <i id="mf" style={{ width: `${p}%` }} />
+                <i id="mf" style={{ width: `${percent}%` }} />
               </div>
-              <small id="mp">{p}% of this truck's capacity used</small>
+              <small id="mp">{percent}% of this truck's capacity used</small>
             </div>
 
             <a className="btn" href="#quote">
@@ -177,6 +214,14 @@ export default function Fleet() {
             <small className="fnt">
               Capacities are indicative. Final vehicle is confirmed at booking.
             </small>
+
+            {load >= 100 && (
+              <div className="fleet-heavy-note">
+                For 100+ ton loads, please{' '}
+                <Link to="/contact">contact us</Link>{' '}
+                for special vehicle and route planning.
+              </div>
+            )}
           </div>
         </div>
       </div>
