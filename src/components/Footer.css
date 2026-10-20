@@ -1,4 +1,5 @@
 .site-footer, .site-footer *{box-sizing:border-box}
+.site-footer{--brand-orange:#FF6A00}
 .site-footer{scroll-margin-top:80px;position:relative;display:block;width:100%;margin:0;padding:0;overflow:hidden;container-type:inline-size;color:#ffe6e3;background:linear-gradient(#000,#0a0a0a 55%,#151515);font-family:Inter,system-ui,-apple-system,"Segoe UI",sans-serif;line-height:1.5}
 .site-footer .rkr-footer-sky{position:absolute;left:0;right:0;top:0;height:calc(100% - 17.25cqw);pointer-events:none;overflow:hidden}
 .site-footer .rkr-footer-star{position:absolute;border-radius:50%;background:#fff;animation:tw var(--d) ease-in-out infinite alternate}
@@ -12,7 +13,7 @@
 .site-footer .rkr-footer-content{position:relative;z-index:2;max-width:1200px;margin:0 auto;padding:40px 24px 0;display:grid;grid-template-columns:1.4fr 1fr 1.2fr;gap:40px}
 .site-footer .rkr-footer-logo{display:flex;align-items:center;gap:10px}
 .site-footer .rkr-footer-sq{display:flex;gap:3px}
-.site-footer .rkr-footer-sq b{width:22px;height:22px;display:grid;place-items:center;background:#fff;color:#d61f10;font-size:12px;font-weight:800}
+.site-footer .rkr-footer-sq b{width:22px;height:22px;display:grid;place-items:center;background:var(--red, #D61F10);color:#fff;font-size:12px;font-weight:800}
 .site-footer .rkr-footer-nm{color:#fff;font-weight:800;font-size:16px;line-height:1.1}
 .site-footer .rkr-footer-nm small{display:block;font-size:9px;letter-spacing:.3em;font-weight:500;margin-top:2px}
 .site-footer .rkr-footer-tag{margin:16px 0 20px;max-width:300px;line-height:1.55;font-size:15px;color:#ffd9d5}
@@ -24,6 +25,14 @@
 .site-footer p{margin:0 0 11px;font-size:15px}
 .site-footer a{color:#ffe6e3;text-decoration:none;font-size:15px;transition:color .2s}
 .site-footer li a:hover,.site-footer li a:focus-visible,.site-footer .rkr-footer-mail:hover{color:#fff}
+.site-footer .rkr-footer-contact p{display:flex;align-items:flex-start;gap:10px;color:#fff;max-width:360px}
+.site-footer .rkr-footer-contact p>svg{flex:0 0 16px;margin-top:4px;color:var(--brand-orange)}
+.site-footer .rkr-footer-contact strong{font-weight:700}
+.site-footer .rkr-footer-contact a{color:#fff;overflow-wrap:anywhere;transition:color .2s ease}
+.site-footer .rkr-footer-contact a:hover,.site-footer .rkr-footer-contact a:focus-visible{color:var(--brand-orange)}
+.site-footer .rkr-footer-contact .rkr-wa-link{color:var(--brand-orange);font-weight:600;text-decoration:underline;text-underline-offset:2px}
+.site-footer .rkr-footer-contact .rkr-wa-link:hover{color:#fff}
+.site-footer .rkr-footer-contact p:last-child span{max-width:340px}
 .site-footer nav{position:static;display:block;top:auto;left:auto;right:auto;z-index:auto;padding:0;background:none}
 .site-footer .rkr-footer-scene{position:relative;z-index:1;display:block;width:100%;height:auto;margin-top:8px}
 .site-footer .rkr-footer-mA{animation:toR 16s linear infinite -6s}
@@ -40,6 +49,6 @@
 @keyframes rd{to{transform:translateX(-136px)}}
 .site-footer .rkr-footer-bl{animation:bl 4s steps(1) infinite}
 @keyframes bl{50%{opacity:.15}}
-@media(max-width:800px){.site-footer .rkr-footer-content{grid-template-columns:1fr 1fr;padding:40px 24px 0}.site-footer .rkr-footer-content>div:first-child{grid-column:1/-1}.site-footer .rkr-footer-moon{width:44px;height:44px;top:18px}}
-@media(max-width:480px){.site-footer .rkr-footer-content{grid-template-columns:1fr;gap:28px}}
+@media(max-width:800px){.site-footer .rkr-footer-content{grid-template-columns:1fr;padding:40px 24px 0;gap:28px}.site-footer .rkr-footer-content>div:first-child{grid-column:auto}.site-footer .rkr-footer-moon{width:44px;height:44px;top:18px}}
+@media(max-width:480px){.site-footer .rkr-footer-content{grid-template-columns:1fr;gap:28px}.site-footer .rkr-footer-contact p:last-child span{max-width:100%}}
 @media(prefers-reduced-motion:reduce){.site-footer .rkr-footer-star,.site-footer .rkr-footer-spark,.site-footer .rkr-footer-shoot,.site-footer .rkr-footer-moon,.site-footer .rkr-footer-mA,.site-footer .rkr-footer-mB,.site-footer .rkr-footer-w,.site-footer .rkr-footer-bob,.site-footer .rkr-footer-dashes,.site-footer .rkr-footer-bl{animation:none}.site-footer .rkr-footer-mA{transform:translateX(150px)}.site-footer .rkr-footer-mB{transform:translateX(950px)}.site-footer .rkr-footer-shoot{display:none}}

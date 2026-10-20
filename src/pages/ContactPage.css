@@ -7,12 +7,14 @@
 .contact-intro{margin:0 0 26px;color:#5d5d62;font-size:15px}
 .contact-info-list{display:grid;gap:12px}
 .contact-info-card{display:flex;align-items:center;gap:15px;padding:16px 17px;border:1px solid #f0e3e0;border-radius:14px;background:var(--white);box-shadow:0 6px 18px rgba(26,26,26,.045)}
-.contact-info-icon{flex:0 0 44px;width:44px;height:44px;display:grid;place-items:center;border-radius:50%;background:var(--red);color:var(--white);font-size:20px;font-weight:700}
-.contact-info-card h3{margin:0 0 3px;color:var(--text-dark);font-size:15px}
-.contact-info-card p,.contact-info-card a{display:block;margin:0;color:#55565b;font-size:14px;text-decoration:none;overflow-wrap:anywhere}
+.contact-info-icon{flex:0 0 44px;width:44px;height:44px;display:grid;place-items:center;border-radius:50%;background:var(--red);color:var(--white);font-size:18px}
+.contact-info-card h3{margin:0 0 3px;color:var(--text-dark);font-size:15px;font-weight:700}
+.contact-info-card p,.contact-info-card a{display:block;margin:0;color:#55565b;font-size:14px;text-decoration:none;overflow-wrap:anywhere;transition:color .2s ease}
 .contact-info-card a:hover{color:var(--red)}
+.contact-info-address{max-width:320px;line-height:1.45}
 .contact-info-card small{display:block;margin-top:4px;color:#717178;font-size:12px}
 .whatsapp-button{display:inline-flex;align-items:center;gap:9px;margin-top:22px;padding:13px 20px;border-radius:999px;background:var(--red);color:var(--white);font-size:14px;font-weight:750;text-decoration:none;transition:transform .2s,background .2s}
+.whatsapp-button svg{font-size:18px}
 .whatsapp-button:hover{transform:translateY(-2px);background:var(--red-dark)}
 .contact-form{padding:30px;border:1px solid #f0e3e0;border-top:4px solid var(--red);border-radius:16px;background:var(--white);box-shadow:0 18px 48px rgba(26,26,26,.09)}
 .contact-form-heading{margin-bottom:23px}.contact-form-heading p{margin:0;color:#66676d;font-size:14px}

@@ -1,12 +1,12 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import parse from 'html-react-parser';
 import { assetUrls, originalMarkup } from '../components/originalMarkup.js';
-import { fleet } from '../data/fleet.js';
 import { services } from '../data/services.js';
 import { steps } from '../data/steps.js';
 import { useReveal } from '../hooks/useReveal.js';
 import Hero from '../components/Hero.jsx';
+import Fleet from '../components/Fleet.jsx';
 
 function original(name) {
   return originalMarkup[name].replace(/__ASSET_(\d+)__/g, (_, i) => assetUrls[Number(i)]);
@@ -27,45 +27,6 @@ function ServiceCard({ service }) {
 
 function Services() {
   return <section id="services"><div className="wrap"><div className="k">Our services</div><h2>Services built to keep you moving</h2><div className="g">{services.map((service) => <ServiceCard key={service.title} service={service} />)}</div><p className="home-services-page-link"><Link to="/services">Explore all services</Link></p></div></section>;
-}
-
-function Fleet() {
-  const [load, setLoad] = useState(5);
-  const [selected, setSelected] = useState(1);
-  const host = useRef(null);
-  useEffect(() => {
-    const root = host.current;
-    const range = root?.querySelector('#ld');
-    if (!root || !range) return;
-    const render = (value, index) => {
-      setLoad(value);
-      setSelected(index);
-      const trucks = [...root.querySelectorAll('.ftk')];
-      trucks.forEach((truck, k) => {
-        truck.classList.remove('on');
-        if (k === index) { void truck.getBoundingClientRect(); truck.classList.add('on'); }
-      });
-      root.querySelectorAll('.ftab').forEach((tab, k) => tab.classList.toggle('on', k === index));
-      const p = Math.min(100, Math.round(value / fleet[index].x * 100));
-      root.querySelector('#lv').textContent = value;
-      root.querySelector('#sn').textContent = fleet[index].n;
-      root.querySelector('#sc').textContent = fleet[index].c;
-      root.querySelector('#sbd').textContent = fleet[index].b;
-      root.querySelector('#sf').textContent = fleet[index].f;
-      root.querySelector('#mf').style.width = `${p}%`;
-      root.querySelector('#mp').textContent = `${p}% of this truck's capacity used`;
-    };
-    const onRange = () => {
-      const value = Number(range.value);
-      render(value, value <= 1.5 ? 0 : value <= 7 ? 1 : value <= 18 ? 2 : 3);
-    };
-    const tabs = [...root.querySelectorAll('.ftab')];
-    range.addEventListener('input', onRange);
-    tabs.forEach((tab, k) => tab.addEventListener('click', () => { range.value = fleet[k].m; render(fleet[k].m, k); }));
-    render(5, 1);
-    return () => { range.removeEventListener('input', onRange); };
-  }, []);
-  return <div ref={host} data-load={load} data-selected={selected}><Html name="fleet" /></div>;
 }
 
 function HowItWorks() {
