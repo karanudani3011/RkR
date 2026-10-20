@@ -96,8 +96,8 @@ function AboutMegaMenu({ closeMenu, sectionClass, onOpenChange }) {
           <div className="about-mega-links-wrap">
             <h2>ABOUT US <span aria-hidden="true">&gt;</span></h2>
             <div className="about-mega-columns">
-              <div>{aboutMenu.slice(0, 3).map(menuLink)}</div>
-              <div>{aboutMenu.slice(3).map(menuLink)}</div>
+              <div>{aboutMenu.slice(0, 2).map(menuLink)}</div>
+              <div>{aboutMenu.slice(2).map(menuLink)}</div>
             </div>
           </div>
           <img className="about-mega-image" src={aboutMenuPhoto} alt="Freight aircraft above a container port" />

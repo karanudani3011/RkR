@@ -187,7 +187,6 @@ header.header.menu-open .header-logo-mark i { box-shadow: none; }
   text-decoration: none;
   transition: color .18s;
 }
-.about-mega-columns > div:last-child a:last-child { border-bottom: 0; }
 .about-menu-arrow { color: #777; transition: transform .18s, color .18s; }
 .about-mega-columns a:hover,
 .about-mobile-links a:hover { color: var(--red); }
