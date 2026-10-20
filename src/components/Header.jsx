@@ -8,7 +8,6 @@ const aboutMenu = [
   { label: 'Our Clients', href: '/about/our-clients', route: true },
   { label: 'Team', href: '#team' },
   { label: 'Safety', href: '/about/safety', route: true },
-  { label: 'Sustainability', href: '#sustainability' },
 ];
 
 const aboutMenuPhoto = aboutMenuImage;

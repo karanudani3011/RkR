@@ -1,6 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
-import freightForwardingImage from '../assets/freight-forwarding.png';
 import routeSurveyImage from '../assets/route-survey.png';
 import renewableVideo from '../assets/10.mp4';
 import './Services.css';
@@ -27,18 +26,6 @@ const serviceData = [
     video: LOWBED_VIDEO, poster: LOWBED_POSTER,
   },
   {
-    id: 'multimodal', title: 'Multimodal Transport',
-    description: 'One booking, several modes. Road, rail and sea legs are joined together so your cargo keeps moving without handover gaps.',
-    points: ['Single point of contact end to end', 'Road, rail and sea connections', 'Live status at every transfer point'], photo: null,
-    video: '/videos/services/multimodal.mp4', poster: '/videos/services/multimodal.jpg',
-  },
-  {
-    id: 'freight', title: 'International Freight Forwarding',
-    description: 'Shipping abroad means paperwork, carriers and deadlines. We coordinate the whole chain from pickup at your door to the destination port.',
-    points: ['Import and export bookings', 'Documentation and cargo tracking', 'Door-to-port and door-to-door options'], photo: null,
-    media: { type: 'image', src: freightForwardingImage, alt: 'Aircraft flying over a container port' },
-  },
-  {
     id: 'survey', title: 'Route Survey & Modification',
     description: 'Before an oversized load moves, we drive the route. Low bridges, tight turns and weak culverts are found early and planned around.',
     points: ['Pre-movement route inspection', 'Clearance and weight-limit checks', 'Temporary road or obstacle modification support'], photo: null,
@@ -54,7 +41,6 @@ const serviceData = [
 
 const skyTones = {
   wind: ['#a9d8f3', '#eff8fd'], heavy: ['#c8d7df', '#f4f7f8'],
-  multimodal: ['#bad7ee', '#f4f8fb'], freight: ['#8bc1e9', '#e7f4fc'],
   survey: ['#f2d8b6', '#fff5e7'], renewable: ['#ffe3aa', '#fff8e6'],
 };
 
@@ -266,10 +252,6 @@ function SceneFeature({ id }) {
   switch (id) {
     case 'wind':
       return <g fill="none" stroke="#f8fbfc" strokeLinecap="round"><path d="M96 252V143m150 109V169" strokeWidth="4"/><g className="service-turbine-spin" style={{ transformOrigin: '96px 143px' }}><path d="M96 143V93m0 50 43 25m-43-25-43 25" strokeWidth="4" /></g><g className="service-turbine-spin slow" style={{ transformOrigin: '246px 169px' }}><path d="M246 169v-36m0 36 31 18m-31-18-31 18" strokeWidth="3" /></g></g>;
-    case 'multimodal':
-      return <g><rect x="25" y="224" width="48" height="26" fill="#cf5145"/><rect x="74" y="224" width="48" height="26" fill="#668b9d"/><rect x="123" y="224" width="48" height="26" fill="#d4a75d"/><rect x="49" y="198" width="48" height="26" fill="#7996a5"/><rect x="98" y="198" width="48" height="26" fill="#cf5145"/><path d="M207 250V145h105m0 0v34m-105-34-32 36" fill="none" stroke="#4f5d65" strokeWidth="6"/><path d="m302 179 18 10-18 10" fill="none" stroke="#4f5d65" strokeWidth="5"/></g>;
-    case 'freight':
-      return <g><path d="M22 219Q196 118 374 219" fill="none" stroke="#fff" strokeWidth="2" strokeDasharray="5 7" opacity=".8"/><g className="service-plane"><path d="m-12 78 52 12-52 12 8-12z" fill="#fff"/><path d="m7 90-13-17m13 17L-6 107" fill="none" stroke="#fff" strokeWidth="4"/></g><rect x="286" y="221" width="48" height="29" fill="#6b8da2"/><rect x="336" y="221" width="42" height="29" fill="#d26653"/></g>;
     case 'survey':
       return <g><path d="M5 225h390v9H5Z" fill="#aebbc0"/><path d="M57 234v32m104-32v32m105-32v32m75-32v32" stroke="#7e9097" strokeWidth="10"/><path d="M57 225q52-55 104 0m0 0q52-55 105 0m0 0q38-42 75 0" fill="none" stroke="#899da5" strokeWidth="6"/><path d="M20 218h360" stroke="#e7ecee" strokeWidth="4"/></g>;
     case 'renewable':

@@ -201,8 +201,17 @@ export default function ContactPage() {
         </div>
       </section>
 
-      <section className="contact-map-section" aria-label="Find us in Gujarat">
-        <div className="contact-map-inner"><div><span className="contact-eyebrow">OUR SERVICE AREA</span><h2>Road transport across Gujarat</h2></div><iframe title="Map of Gujarat" src="https://www.google.com/maps?q=Gujarat&output=embed" loading="lazy" referrerPolicy="no-referrer-when-downgrade" /></div>
+      <section className="contact-map-section" aria-label="Visit our Rajkot office">
+        <div className="contact-map-inner">
+          <div><span className="contact-eyebrow">FIND US</span><h2>Visit our Rajkot office</h2></div>
+          <div className="contact-map-frame">
+            <iframe title="RadheKrishna Roadways office location" src="https://www.google.com/maps?q=OFFICE+NO+321,+ISCON+PROZONE+MALL,+150+FT+RING+ROAD,+RAJKOT+360005&output=embed&z=16" loading="lazy" referrerPolicy="no-referrer-when-downgrade" />
+            <div className="contact-map-info">
+              <p>OFFICE NO 321, ISCON PROZONE MALL, 150 FT RING ROAD, RAJKOT 360005</p>
+              <a href="https://www.google.com/maps/search/?api=1&query=OFFICE+NO+321%2C+ISCON+PROZONE+MALL%2C+150+FT+RING+ROAD%2C+RAJKOT+360005" target="_blank" rel="noopener noreferrer">Open in Maps</a>
+            </div>
+          </div>
+        </div>
       </section>
 
       <section className="contact-faq-section">
