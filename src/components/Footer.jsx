@@ -1,6 +1,7 @@
 import { useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import FooterScene from './FooterScene.jsx';
+import { WHATSAPP_DISPLAY, WHATSAPP_TEL } from '../constants/contact.js';
 import './Footer.css';
 
 function FaPhoneAlt(props) {
@@ -89,16 +90,7 @@ export default function Footer() {
             <FaWhatsapp aria-hidden="true" />
             <span>
               <strong>WhatsApp:</strong>{' '}
-              <a href="tel:+917265828079">+91 72658 28079</a>{' '}
-              <a
-                href="https://wa.me/917265828079"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="rkr-wa-link"
-                title="Chat on WhatsApp"
-              >
-                (Chat)
-              </a>
+              <a href={`tel:${WHATSAPP_TEL}`}>{WHATSAPP_DISPLAY}</a>
             </span>
           </p>
           <p>

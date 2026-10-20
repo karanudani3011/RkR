@@ -30,8 +30,6 @@
 .site-footer .rkr-footer-contact strong{font-weight:700}
 .site-footer .rkr-footer-contact a{color:#fff;overflow-wrap:anywhere;transition:color .2s ease}
 .site-footer .rkr-footer-contact a:hover,.site-footer .rkr-footer-contact a:focus-visible{color:var(--brand-orange)}
-.site-footer .rkr-footer-contact .rkr-wa-link{color:var(--brand-orange);font-weight:600;text-decoration:underline;text-underline-offset:2px}
-.site-footer .rkr-footer-contact .rkr-wa-link:hover{color:#fff}
 .site-footer .rkr-footer-contact p:last-child span{max-width:340px}
 .site-footer nav{position:static;display:block;top:auto;left:auto;right:auto;z-index:auto;padding:0;background:none}
 .site-footer .rkr-footer-scene{position:relative;z-index:1;display:block;width:100%;height:auto;margin-top:8px}
