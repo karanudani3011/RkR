@@ -3,12 +3,13 @@ import { useReducedMotion } from 'framer-motion';
 
 const mediaClassName = 'service-media-element';
 
-export default function ServiceMedia({ type = 'image', src, poster, alt }) {
+export default function ServiceMedia({ type = 'image', src, poster, alt, orientation = 'landscape', className = '' }) {
   const panelRef = useRef(null);
   const videoRef = useRef(null);
   const reduceMotion = useReducedMotion();
   const [videoFailed, setVideoFailed] = useState(false);
   const showVideo = type === 'video' && !reduceMotion && !videoFailed;
+  const isPortrait = orientation === 'portrait';
 
   useEffect(() => {
     const video = videoRef.current;
@@ -40,12 +41,13 @@ export default function ServiceMedia({ type = 'image', src, poster, alt }) {
   return (
     <div
       ref={panelRef}
-      className="services-panel service-reveal relative w-full aspect-[4/3] overflow-hidden rounded-2xl shadow-lg bg-neutral-100"
+      className={`services-panel ph service-media-frame relative w-full overflow-hidden rounded-2xl shadow-lg bg-neutral-100 ${isPortrait ? 'orientation-portrait max-w-[360px] aspect-[3/4] mx-auto' : 'orientation-landscape aspect-[4/3]'} ${className}`.trim()}
+      style={{ aspectRatio: isPortrait ? '3 / 4' : '4 / 3' }}
     >
       {showVideo ? (
         <video
           ref={videoRef}
-          className={mediaClassName}
+          className={`${mediaClassName} absolute inset-0 h-full w-full object-cover object-center`}
           autoPlay
           muted
           loop
@@ -60,8 +62,8 @@ export default function ServiceMedia({ type = 'image', src, poster, alt }) {
         </video>
       ) : (
         <img
-          className={mediaClassName}
-          src={type === 'video' ? poster : src}
+          className={`${mediaClassName} absolute inset-0 h-full w-full object-cover object-center`}
+          src={type === 'video' ? (poster || src) : src}
           alt={alt}
           loading="lazy"
           decoding="async"

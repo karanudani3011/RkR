@@ -17,6 +17,8 @@ function ServiceRow({ service, index }) {
         src={service.video || service.image}
         poster={service.poster || service.image}
         alt={service.alt}
+        orientation={service.orientation}
+        className="service-reveal"
       />
       <div className="services-copy service-reveal">
         <span className="services-number">{String(index + 1).padStart(2, '0')}</span>

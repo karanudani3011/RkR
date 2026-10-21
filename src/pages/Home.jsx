@@ -7,6 +7,7 @@ import { services } from '../data/services.js';
 import { useReveal } from '../hooks/useReveal.js';
 import Hero from '../components/Hero.jsx';
 import Fleet from '../components/Fleet.jsx';
+import ServiceMedia from '../components/ServiceMedia.jsx';
 import './HomeServices.css';
 
 const TOTAL_DURATION = 6;
@@ -41,32 +42,19 @@ const serviceCardVariants = {
 };
 
 function ServiceCard({ service, reduceMotion }) {
-  const [videoFailed, setVideoFailed] = useState(false);
-
   return (
     <motion.article
       className="sc"
       variants={serviceCardVariants}
       whileHover={reduceMotion ? undefined : { y: -6, transition: { duration: 0.25, ease: 'easeOut' } }}
     >
-      <div className="ph">
-        {service.video && !reduceMotion && !videoFailed ? (
-          <video
-            autoPlay
-            muted
-            loop
-            playsInline
-            preload="metadata"
-            poster={service.poster}
-            aria-label={`${service.title} video`}
-            onError={() => setVideoFailed(true)}
-          >
-            <source src={service.video} type="video/mp4" />
-          </video>
-        ) : (
-          <img src={service.poster || service.image} alt={service.alt} loading="lazy" />
-        )}
-      </div>
+      <ServiceMedia
+        type={service.video ? 'video' : 'image'}
+        src={service.video || service.image}
+        poster={service.poster || service.image}
+        alt={service.alt}
+        orientation={service.orientation}
+      />
       <div className="sb">
         <div className="ib" aria-hidden="true">{service.icon}</div>
         <h3>{service.title}</h3>
