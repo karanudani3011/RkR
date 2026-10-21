@@ -65,7 +65,7 @@ export default function Footer() {
               <small>ROADWAYS</small>
             </span>
           </div>
-          <p className="rkr-footer-tag">Reliable truck rental and road transport for your cargo, day and night.</p>
+          <p className="rkr-footer-tag">Reliable road transport for your cargo, day and night.</p>
           <Link className="rkr-footer-btn" to="/contact">Get a Quote</Link>
         </div>
         <nav aria-label="Quick links">

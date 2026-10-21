@@ -1,11 +1,54 @@
-import photo1 from '../assets/media-2.jpg';
-import photo2 from '../assets/media-3.jpg';
-import photo3 from '../assets/media-4.jpg';
-import photo4 from '../assets/media-5.jpg';
+import surveyImage from '../assets/route-survey.png';
 
 export const services = [
-  { title: 'Truck Rental', icon: '🚚', photo: photo1, alt: 'Red truck driving on the highway at sunset', description: 'Rent the right truck for your load, by the trip, day or month.' },
-  { title: 'Heavy Cargo Transport', icon: '🏗️', photo: photo2, alt: 'Crane lifting a container onto a heavy cargo truck', description: 'Support for heavy and oversized cargo, subject to vehicle suitability.' },
-  { title: 'Long-Distance Transport', icon: '🛣️', photo: photo3, alt: 'Truck on a winding mountain highway', description: 'Reliable road transport for cargo moving between cities.' },
-  { title: 'Business Logistics Support', icon: '📦', photo: photo4, alt: 'Warehouse team loading goods into a truck', description: 'Practical transport coordination for business and commercial needs.' },
+  {
+    id: 'wind-energy',
+    slug: 'wind-energy',
+    title: 'Wind Energy Transport',
+    shortDescription: 'Careful route and vehicle planning for blades, towers and nacelles.',
+    description: 'Turbine blades, towers and nacelles are long, heavy and fragile. We plan the vehicle, the route and the escort before the first wheel turns.',
+    image: '/videos/services/wind.jpg',
+    video: '/videos/services/wind.mp4',
+    poster: '/videos/services/wind.jpg',
+    alt: 'Wind energy transport video preview',
+    icon: '🌬️',
+    points: ['Extendable blade trailers and tower carriers', 'Site-to-site movement with trained crew', 'Escort and clearance coordination'],
+  },
+  {
+    id: 'heavy-specialised-transport',
+    slug: 'heavy-specialised-transport',
+    title: 'Heavy & Specialised Transport',
+    shortDescription: 'The right trailer, route and handling for oversized machinery and project cargo.',
+    description: 'Oversized machinery and project cargo need more than a bigger truck. We match the right trailer to the weight, height and width of your load.',
+    image: '/videos/services/multimodal.jpg',
+    video: '/videos/services/multimodal.mp4',
+    poster: '/videos/services/multimodal.jpg',
+    alt: 'Project cargo moving through a multimodal logistics hub',
+    icon: '🚛',
+    points: ['Low-bed, multi-axle and hydraulic trailers', 'Load securing and lashing plans', 'Permits and route approvals handled for you', 'Machinery loading and unloading support'],
+  },
+  {
+    id: 'route-survey-modification',
+    slug: 'route-survey-modification',
+    title: 'Route Survey & Modification',
+    shortDescription: 'Identify clearances, weight limits and obstacles before an oversized load moves.',
+    description: 'Before an oversized load moves, we drive the route. Low bridges, tight turns and weak culverts are found early and planned around.',
+    image: surveyImage,
+    alt: 'Route survey planning with maps, hard hat and walkie-talkies at a construction site',
+    icon: '🗺️',
+    points: ['Pre-movement route inspection', 'Clearance and weight-limit checks', 'Temporary road or obstacle modification support'],
+  },
+  {
+    id: 'renewable-energy-logistics',
+    slug: 'renewable-energy-logistics',
+    title: 'Renewable Energy Logistics',
+    shortDescription: 'Careful delivery of solar, wind and storage equipment to project sites.',
+    description: 'Solar panels, wind equipment and storage systems are moving to sites across the country. We handle delivery with the care these loads need.',
+    image: '/videos/services/renewable.jpg',
+    video: '/videos/services/renewable.mp4',
+    poster: '/videos/services/renewable.jpg',
+    alt: 'Renewable energy logistics video preview',
+    icon: '☀️',
+    points: ['Solar module and inverter transport', 'Equipment delivery to remote project sites', 'Scheduled phased supply for large projects'],
+  },
 ];

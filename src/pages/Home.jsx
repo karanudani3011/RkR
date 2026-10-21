@@ -2,11 +2,12 @@ import { useEffect, useRef, useState } from 'react';
 import { motion, useInView, useReducedMotion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import parse, { domToReact } from 'html-react-parser';
-import { assetUrls, originalMarkup } from '../components/originalMarkup.js';
+import { originalMarkup } from '../components/originalMarkup.js';
 import { services } from '../data/services.js';
 import { useReveal } from '../hooks/useReveal.js';
 import Hero from '../components/Hero.jsx';
 import Fleet from '../components/Fleet.jsx';
+import './HomeServices.css';
 
 const TOTAL_DURATION = 6;
 const STEPS = 4;
@@ -22,7 +23,7 @@ const HOW_WORKS_TIMING_STYLE = {
 };
 
 function original(name) {
-  return originalMarkup[name].replace(/__ASSET_(\d+)__/g, (_, i) => assetUrls[Number(i)]);
+  return originalMarkup[name];
 }
 
 function Html({ name, className }) {
@@ -34,12 +35,73 @@ function SvgDefs() { return <Html name="defs" />; }
 
 function Stats() { return <Html name="stats" />; }
 
-function ServiceCard({ service }) {
-  return <div className="sc rv"><div className="ph"><img src={service.photo} alt={service.alt} /></div><div className="sb"><div className="ib">{service.icon}</div><h3>{service.title}</h3><p>{service.description}</p><a className="go" href="#quote"><span>Enquire</span>→</a></div></div>;
+const serviceCardVariants = {
+  hidden: { opacity: 0, y: 22 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: 'easeOut' } },
+};
+
+function ServiceCard({ service, reduceMotion }) {
+  const [videoFailed, setVideoFailed] = useState(false);
+
+  return (
+    <motion.article
+      className="sc"
+      variants={serviceCardVariants}
+      whileHover={reduceMotion ? undefined : { y: -6, transition: { duration: 0.25, ease: 'easeOut' } }}
+    >
+      <div className="ph">
+        {service.video && !reduceMotion && !videoFailed ? (
+          <video
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="metadata"
+            poster={service.poster}
+            aria-label={`${service.title} video`}
+            onError={() => setVideoFailed(true)}
+          >
+            <source src={service.video} type="video/mp4" />
+          </video>
+        ) : (
+          <img src={service.poster || service.image} alt={service.alt} loading="lazy" />
+        )}
+      </div>
+      <div className="sb">
+        <div className="ib" aria-hidden="true">{service.icon}</div>
+        <h3>{service.title}</h3>
+        <p>{service.shortDescription}</p>
+        <Link className="go" to={`/services#${service.slug}`} aria-label={`Learn more about ${service.title}`}>
+          <span>Learn more</span>→
+        </Link>
+      </div>
+    </motion.article>
+  );
 }
 
 function Services() {
-  return <section id="services"><div className="wrap"><div className="k">Our services</div><h2>Services built to keep you moving</h2><div className="g">{services.map((service) => <ServiceCard key={service.title} service={service} />)}</div><p className="home-services-page-link"><Link to="/services">Explore all services</Link></p></div></section>;
+  const reduceMotion = useReducedMotion();
+
+  return (
+    <section id="services">
+      <div className="wrap">
+        <div className="k">Our services</div>
+        <h2>Services built to keep you moving</h2>
+        <motion.div
+          className="home-services-grid"
+          initial={reduceMotion ? false : 'hidden'}
+          whileInView={reduceMotion ? undefined : 'visible'}
+          viewport={{ once: true, amount: 0.12 }}
+          variants={{ visible: { transition: { staggerChildren: 0.1 } } }}
+        >
+          {services.map((service) => (
+            <ServiceCard key={service.id} service={service} reduceMotion={reduceMotion} />
+          ))}
+        </motion.div>
+        <p className="home-services-page-link"><Link to="/services">Explore all services</Link></p>
+      </div>
+    </section>
+  );
 }
 
 function HowMarkup({ activeStep, cycle, reduceMotion }) {

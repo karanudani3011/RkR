@@ -14,9 +14,13 @@ export default function BackgroundVideo({ src, poster, overlayClassName = 'bg-bl
   const [reducedMotion, setReducedMotion] = useState(getMotionPreference);
   const [mobile, setMobile] = useState(getMobilePreference);
   const showPosterOnly = reducedMotion || mobile;
-  const overlayStyle = overlayClassName.includes('bg-gradient-to-r')
-    ? { background: 'linear-gradient(to right, rgba(122,15,20,.9), rgba(143,17,25,.7), rgba(0,0,0,.4))' }
-    : { backgroundColor: overlayClassName.includes('bg-black/60') ? 'rgba(0,0,0,.6)' : 'rgba(0,0,0,.5)' };
+  const overlayStyle = {
+    backgroundColor: overlayClassName.includes('bg-black/60')
+      ? 'rgba(0,0,0,.6)'
+      : overlayClassName.includes('bg-black/25')
+        ? 'rgba(0,0,0,.25)'
+        : 'rgba(0,0,0,.5)',
+  };
 
   useEffect(() => {
     const motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
