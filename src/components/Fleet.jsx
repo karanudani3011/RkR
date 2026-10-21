@@ -1,19 +1,16 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
+const MIN_LOAD = 1;
+const MAX_LOAD = 300;
+const THUMB = 22;
+const clampLoad = (value) => Math.min(MAX_LOAD, Math.max(MIN_LOAD, value));
+
 const TRUCKS = [
   { id: "open", icon: "🚛", name: "Open Body", minTons: 1, maxTons: 9, capacity: "Up to 9 tons", body: "Open flat / high-side body", bestFor: "Bulk goods, construction material, general cargo" },
   { id: "container", icon: "📦", name: "Container Truck", minTons: 9, maxTons: 18, capacity: "9 to 18 tons", body: "Closed container body", bestFor: "Secure, weather-protected and long-distance cargo" },
   { id: "heavy", icon: "🏗️", name: "Heavy Duty Trailer", minTons: 18, maxTons: 300, capacity: "18 to 300 tons", body: "Multi-axle hydraulic low-bed trailer", bestFor: "Heavy machinery, ODC and oversized cargo" },
 ];
-
-const LOAD_STEPS = (() => {
-  const steps = [];
-  for (let i = 1; i <= 30; i += 1) steps.push(i);
-  for (let i = 35; i <= 100; i += 5) steps.push(i);
-  for (let i = 110; i <= 300; i += 10) steps.push(i);
-  return steps;
-})();
 
 export default function Fleet() {
   const [load, setLoad] = useState(5);
@@ -21,10 +18,10 @@ export default function Fleet() {
 
   const selectedTruck = TRUCKS[selected] || TRUCKS[0];
   const percent = Math.min(100, Math.round((load / selectedTruck.maxTons) * 100));
+  const pct = ((load - MIN_LOAD) / (MAX_LOAD - MIN_LOAD)) * 100;
 
   const handleRange = (e) => {
-    const stepIdx = Number(e.target.value);
-    const nextLoad = LOAD_STEPS[stepIdx] ?? 1;
+    const nextLoad = clampLoad(Number(e.target.value));
     setLoad(nextLoad);
 
     if (nextLoad >= 18) {
@@ -38,23 +35,8 @@ export default function Fleet() {
 
   const handleTab = (index) => {
     setSelected(index);
-    setLoad(TRUCKS[index].minTons);
+    setLoad(clampLoad(TRUCKS[index].minTons));
   };
-
-  const currentStepIndex = (() => {
-    const idx = LOAD_STEPS.indexOf(load);
-    if (idx !== -1) return idx;
-    let closest = 0;
-    let minDiff = Infinity;
-    LOAD_STEPS.forEach((val, i) => {
-      const diff = Math.abs(val - load);
-      if (diff < minDiff) {
-        minDiff = diff;
-        closest = i;
-      }
-    });
-    return closest;
-  })();
 
   return (
     <section id="fleet">
@@ -168,16 +150,22 @@ export default function Fleet() {
             <label htmlFor="ld">
               Your load: <b id="lv">{load}</b> tons
             </label>
-            <input
-              id="ld"
-              type="range"
-              min="0"
-              max={LOAD_STEPS.length - 1}
-              step="1"
-              value={currentStepIndex}
-              onChange={handleRange}
-              aria-label="Select load in tons"
-            />
+            <div className="fleet-load-slider-wrap">
+              <input
+                id="ld"
+                className="w-full m-0 p-0 fleet-load-range"
+                type="range"
+                min={MIN_LOAD}
+                max={MAX_LOAD}
+                step={1}
+                value={load}
+                onChange={handleRange}
+                aria-label="Select load in tons"
+                aria-valuemin={MIN_LOAD}
+                aria-valuemax={MAX_LOAD}
+                style={{ '--pct': pct, '--thumb-size': `${THUMB}px` }}
+              />
+            </div>
 
             <div className="ftabs">
               {TRUCKS.map((item, idx) => (

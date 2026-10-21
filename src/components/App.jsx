@@ -7,6 +7,7 @@ import ServicesPage from '../pages/Services.jsx';
 import SafetyPage from '../pages/SafetyPage.jsx';
 import WhoWeArePage from '../pages/WhoWeAre.jsx';
 import OurClientsPage from '../pages/OurClients.jsx';
+import CaseStudies from '../pages/CaseStudies.jsx';
 import { ScrollToTop, HashScroll } from './ScrollToTop.jsx';
 
 export default function App() {
@@ -19,6 +20,7 @@ export default function App() {
         <Route path="/" element={<Home />} />
         <Route path="/contact" element={<ContactPage />} />
         <Route path="/services" element={<ServicesPage />} />
+        <Route path="/case-studies" element={<CaseStudies />} />
         <Route path="/about/who-we-are" element={<WhoWeArePage />} />
         <Route path="/about/our-clients" element={<OurClientsPage />} />
         <Route path="/about/safety" element={<SafetyPage />} />

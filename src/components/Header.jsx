@@ -144,6 +144,7 @@ export default function Header() {
       <nav className={`header-nav${menuOpen ? ' menu-open' : ''}`} aria-label="Main navigation">
         <AboutMegaMenu closeMenu={closeMenu} sectionClass={sectionClass} onOpenChange={setAboutOpen} />
         <NavLink to="/services" className={({ isActive }) => isActive ? 'active' : undefined} onClick={closeMenu}>Services</NavLink>
+        <NavLink to="/case-studies" className={({ isActive }) => isActive ? 'active' : undefined} onClick={closeMenu}>Case Studies</NavLink>
         <NavLink to="/contact" className={({ isActive }) => isActive ? 'active' : undefined} onClick={closeMenu}>Contact Us</NavLink>
         <Link className="header-quote" to="/contact" onClick={closeMenu}>Get a Quote</Link>
       </nav>
