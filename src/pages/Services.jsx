@@ -9,7 +9,7 @@ const serviceData = services;
 function ServiceRow({ service, index }) {
   return (
     <section
-      className={`services-row${service.type === 'image' && service.orientation === 'landscape-wide' ? ' services-row--wide-image' : ''}${index % 2 === 1 ? ' is-reversed' : ''}`}
+      className={`services-row${index % 2 === 1 ? ' is-reversed' : ''}`}
       id={service.slug}
     >
       <ServiceMedia

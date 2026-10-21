@@ -31,10 +31,6 @@ body:has(.services-page) .header .header-nav a:not(.btn-quote).active { color: #
 .services-row { display: grid; grid-template-columns: minmax(0,2fr) minmax(0,3fr); align-items: center; gap: clamp(30px,6vw,72px); padding: 60px 0; border-bottom: 1px solid #e9e5e4; scroll-margin-top: 148px; }
 .services-row:nth-child(even) .services-panel { order: 2; }
 .services-row:nth-child(even) .services-copy { order: 1; }
-.services-row.services-row--wide-image { grid-template-columns: minmax(0,1fr) minmax(0,1.3fr); }
-.services-row.services-row--wide-image .services-panel { order: 2; width: 100%; max-width: none; aspect-ratio: 16 / 9; margin-inline: 0; }
-.services-row.services-row--wide-image .services-copy { order: 1; }
-.services-panel.service-media--landscape { width: 100%; height: auto; max-width: none; aspect-ratio: 16 / 9; margin-inline: 0; }
 .services-panel { position: relative; width: 100%; aspect-ratio: 4/3; overflow: hidden; border: 1px solid #e4e4ea; border-radius: 16px; background: #f5f5f5; box-shadow: 0 10px 20px rgba(0,0,0,.1); }
 .services-panel.orientation-portrait { width: 100%; max-width: 360px; aspect-ratio: 3/4; margin-inline: auto; }
 .services-panel.orientation-landscape { aspect-ratio: 4/3; }
@@ -88,9 +84,6 @@ body:has(.services-page) .header .header-nav a:not(.btn-quote).active { color: #
   .services-copy { order: 2; }
   .services-panel { order: 1; max-width: 320px; margin-inline: auto; }
   .services-panel.orientation-portrait { max-width: 320px; }
-  .services-row.services-row--wide-image { grid-template-columns: 1fr; }
-  .services-row.services-row--wide-image .services-panel { order: 1; width: 100%; max-width: none; aspect-ratio: 16 / 9; margin-inline: 0; }
-  .services-row.services-row--wide-image .services-copy { order: 2; }
   .services-panel-video.is-portrait-video { max-width: 300px; }
   .services-copy h2 { font-size: 27px; }
   .services-chip-list { width: calc(100% - 32px); }
