@@ -2,7 +2,7 @@ export default function FooterScene() {
   return (
     <svg className="rkr-footer-scene" viewBox="0 40 1600 440" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Two RadheKrishna Roadways trucks driving past each other at night">
       <defs>
-        <image id="lg" href="/rkr-logo.png" width="236" height="145" />
+        <image id="lg" href="/rkr-logo-color.png" width="236" height="145" preserveAspectRatio="xMidYMid meet" />
         <linearGradient id="road" x1="0" y1="0" x2="0" y2="1">
           <stop offset="0" stopColor="#3f4249" />
           <stop offset="1" stopColor="#24262b" />

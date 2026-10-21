@@ -57,16 +57,10 @@ export default function Footer() {
       <div className="rkr-footer-content">
         <div>
           <div className="rkr-footer-logo">
-            <span className="rkr-footer-sq">
-              <b>R</b><b>K</b><b>R</b>
-            </span>
-            <span className="rkr-footer-nm">
-              RadheKrishna
-              <small>ROADWAYS</small>
-            </span>
+            <img className="site-logo" src="/rkr-logo-white.png" alt="RadheKrishna Roadways" width="180" height="44" />
           </div>
           <p className="rkr-footer-tag">Reliable road transport for your cargo, day and night.</p>
-          <Link className="rkr-footer-btn" to="/contact">Get a Quote</Link>
+          <Link className="rkr-footer-btn btn-quote" to="/contact">Get a Quote</Link>
         </div>
         <nav aria-label="Quick links">
           <h4>Quick Links</h4>

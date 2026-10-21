@@ -1,20 +1,18 @@
-import { useEffect, useRef, useState } from 'react';
-import { useReducedMotion } from 'framer-motion';
+import { useEffect, useRef } from 'react';
 
 const mediaClassName = 'service-media-element';
 
-export default function ServiceMedia({ type = 'image', src, poster, alt, orientation = 'landscape', className = '' }) {
+export default function ServiceMedia({ type = 'image', src, poster, alt, orientation = 'landscape', objectPosition = 'center', className = '' }) {
   const panelRef = useRef(null);
   const videoRef = useRef(null);
-  const reduceMotion = useReducedMotion();
-  const [videoFailed, setVideoFailed] = useState(false);
-  const showVideo = type === 'video' && !reduceMotion && !videoFailed;
   const isPortrait = orientation === 'portrait';
+  const isWideImage = type === 'image' && orientation === 'landscape-wide';
+  const aspectRatio = isPortrait ? '3 / 4' : isWideImage ? '16 / 9' : '4 / 3';
 
   useEffect(() => {
     const video = videoRef.current;
     const panel = panelRef.current;
-    if (!showVideo || !video || !panel) return undefined;
+    if (type !== 'video' || !video || !panel) return undefined;
 
     video.muted = true;
     const playVideo = () => {
@@ -36,15 +34,15 @@ export default function ServiceMedia({ type = 'image', src, poster, alt, orienta
       observer.disconnect();
       video.pause();
     };
-  }, [showVideo, src]);
+  }, [type, src]);
 
   return (
     <div
       ref={panelRef}
-      className={`services-panel ph service-media-frame relative w-full overflow-hidden rounded-2xl shadow-lg bg-neutral-100 ${isPortrait ? 'orientation-portrait max-w-[360px] aspect-[3/4] mx-auto' : 'orientation-landscape aspect-[4/3]'} ${className}`.trim()}
-      style={{ aspectRatio: isPortrait ? '3 / 4' : '4 / 3' }}
+      className={`services-panel ph service-media-frame relative w-full overflow-hidden rounded-2xl shadow-lg bg-neutral-100 ${isPortrait ? 'orientation-portrait max-w-[360px] aspect-[3/4] mx-auto' : isWideImage ? 'service-media--landscape orientation-landscape aspect-video' : 'orientation-landscape aspect-[4/3]'} ${className}`.trim()}
+      style={{ aspectRatio }}
     >
-      {showVideo ? (
+      {type === 'video' ? (
         <video
           ref={videoRef}
           className={`${mediaClassName} absolute inset-0 h-full w-full object-cover object-center`}
@@ -55,7 +53,6 @@ export default function ServiceMedia({ type = 'image', src, poster, alt, orienta
           preload="metadata"
           poster={poster}
           aria-label={alt}
-          onError={() => setVideoFailed(true)}
         >
           <source src={src} type="video/mp4" />
           Your browser does not support the video tag.
@@ -63,10 +60,11 @@ export default function ServiceMedia({ type = 'image', src, poster, alt, orienta
       ) : (
         <img
           className={`${mediaClassName} absolute inset-0 h-full w-full object-cover object-center`}
-          src={type === 'video' ? (poster || src) : src}
+          src={src}
           alt={alt}
           loading="lazy"
           decoding="async"
+          style={{ objectPosition }}
         />
       )}
     </div>

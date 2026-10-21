@@ -14,7 +14,7 @@ export default function Hero() {
         <h1 id="hero-title" style={{ textShadow: '0 2px 12px rgba(0,0,0,0.55)' }}>Right Truck.<br /><b>Right On Time.</b></h1>
         <p style={{ textShadow: '0 2px 12px rgba(0,0,0,0.55)' }}>Rent trucks of every size for your goods, day trips or long-term contracts. Clean vehicles, experienced drivers, honest rates.</p>
         <div className="hero-actions">
-          <Link className="btn" to="/contact">Book a Truck</Link>
+          <Link className="btn btn-quote" to="/contact">Book a Truck</Link>
           <a className="btn o" href="#fleet">View Fleet</a>
         </div>
       </div>

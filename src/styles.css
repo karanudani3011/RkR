@@ -1,4 +1,4 @@
-:root{--red:#D61F10;--red-dark:#8F111A;--red-light:#FF4B3A;--white:#FFFFFF;--off-white:#FFF4F0;--text-dark:#1A1A1A;--header-bg:#FFFFFF;--truck-white:#FFFFFF;--truck-silver:#D5DAE1;--truck-charcoal:#2B2D31;--truck-steel:#5B6B7F;--truck-graphite:#3B3F46;--cargo-kraft:#D9A066;--cargo-sand:#E8C48F;--road:#2B2D31;--road-line:#FFFFFF;--glass:#BFE3F5;box-sizing:border-box}
+:root{--brand-red:#D91F11;--brand-red-dark:#B5170B;--brand-white:#FFFFFF;--red:#D61F10;--red-dark:#8F111A;--red-light:#FF4B3A;--white:#FFFFFF;--off-white:#FFF4F0;--text-dark:#1A1A1A;--header-bg:#FFFFFF;--truck-white:#FFFFFF;--truck-silver:#D5DAE1;--truck-charcoal:#2B2D31;--truck-steel:#5B6B7F;--truck-graphite:#3B3F46;--cargo-kraft:#D9A066;--cargo-sand:#E8C48F;--road:#2B2D31;--road-line:#FFFFFF;--glass:#BFE3F5;box-sizing:border-box}
 *{box-sizing:border-box}html{scroll-behavior:smooth}
 body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;background:var(--white);color:var(--text-dark);line-height:1.5}
 .hero{position:relative;height:56.25vw;min-height:560px;overflow:hidden;background:linear-gradient(var(--red-dark) 0%,var(--red-dark) 36%,var(--red) 66%,var(--red-light) 80%);color:var(--white)}
@@ -30,7 +30,7 @@ body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;b
 @keyframes pageBeamFade{50%{opacity:.7}}
 .sm{left:72%;top:2%;width:14px;height:14px;border-radius:50%;background:rgba(255,255,255,.4);filter:blur(4px);animation:sm 2.2s linear infinite}
 @keyframes sm{to{transform:translate(-110px,-60px) scale(4.5);opacity:0}}
-.btn{background:var(--red);color:var(--white);padding:13px 24px;border-radius:50px;text-decoration:none;font-weight:800;display:inline-block;border:0;font-size:15px;cursor:pointer}
+.btn{background:var(--brand-red);color:#fff;padding:13px 24px;border-radius:50px;text-decoration:none;font-weight:800;display:inline-block;border:0;font-size:15px;cursor:pointer}
 .btn.o{background:rgba(255,255,255,.08);color:var(--white);border:2px solid rgba(255,255,255,.7)}
 .copy{z-index:4;left:4vw;top:15vh;max-width:560px}
 .tag{font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--red);font-weight:800}
@@ -164,7 +164,7 @@ body{background:var(--white);color:var(--text-dark)}
 .hero .tag{color:var(--white)}
 .hero-copy h1{color:var(--white)}
 .hero-copy h1 b{color:#FFD9D5}
-.hero .btn{background:var(--red);color:var(--white)}
+.hero .btn{background:var(--brand-red);color:#fff}
 .hero .btn.o{background:transparent;color:var(--white);border-color:var(--white)}
 .stats{background:var(--red);color:var(--white)}
 .stats b,.stats span{color:var(--white)}
@@ -196,8 +196,8 @@ h1,h2,h3,h4{color:var(--text-dark)}
 .cta form{background:var(--white);color:var(--text-dark);padding:22px;border-radius:16px;box-shadow:0 12px 32px rgba(26,26,26,.16)}
 .cta form input,.cta form select{background:var(--off-white);color:var(--text-dark);border:1px solid color-mix(in srgb,var(--red) 18%,var(--white))}
 .cta form input::placeholder{color:color-mix(in srgb,var(--text-dark) 58%,var(--white))}
-.cta form .btn{background:var(--red);color:var(--white)}
-.btn{background:var(--red);color:var(--white)}
+.cta form .btn{background:var(--brand-red);color:#fff}
+.btn{background:var(--brand-red);color:#fff}
 .btn:hover,.btn:focus-visible{background:var(--red-dark);color:var(--white)}
 .hero .btn.o:hover,.hero .btn.o:focus-visible{background:var(--white);color:var(--red)}
 
@@ -206,3 +206,8 @@ h1,h2,h3,h4{color:var(--text-dark)}
 
 .home-services-page-link{margin:24px 0 0;text-align:center}.home-services-page-link a{display:inline-flex;align-items:center;min-height:42px;padding:9px 19px;border:1px solid var(--red);border-radius:999px;color:var(--red);font-size:14px;font-weight:750;text-decoration:none;transition:background .2s,color .2s}.home-services-page-link a:hover,.home-services-page-link a:focus-visible{background:var(--red);color:var(--white)}
 
+
+
+.btn-quote{display:inline-flex;align-items:center;justify-content:center;background:var(--brand-red);color:var(--brand-white);border:2px solid var(--brand-white);border-radius:999px;padding:12px 28px;font-weight:700;box-shadow:0 6px 18px rgba(0,0,0,.25);text-decoration:none;white-space:nowrap;transition:all .25s ease}
+.btn-quote:hover,.btn-quote:focus-visible{background:var(--brand-white);color:var(--brand-red);border-color:var(--brand-white)}
+@media(max-width:767px){.btn-quote{padding:10px 22px;font-size:14px}}

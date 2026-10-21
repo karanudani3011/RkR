@@ -135,8 +135,14 @@ export default function Header() {
   return (
     <header className={`header${scrolled ? ' scrolled' : ''}${menuOpen ? ' menu-open' : ''}${aboutOpen ? ' about-open' : ''}`}>
       <Link className="header-logo" to="/" aria-label="RKR RadheKrishna Roadways home" onClick={closeMenu}>
-        <span className="header-logo-mark" aria-hidden="true"><i>R</i><i>K</i><i>R</i></span>
-        <span className="header-logo-name">RadheKrishna<small>ROADWAYS</small></span>
+        <img
+          className="site-logo"
+          src={pathname === '/' && !scrolled && !menuOpen && !aboutOpen ? '/rkr-logo-white.png' : '/rkr-logo-color.png'}
+          alt="RadheKrishna Roadways"
+          width="180"
+          height="44"
+          fetchPriority="high"
+        />
       </Link>
       <button className="header-menu-toggle" type="button" aria-label={menuOpen ? 'Close navigation menu' : 'Open navigation menu'} aria-expanded={menuOpen} onClick={() => setMenuOpen((open) => !open)}>
         <span /><span /><span />
@@ -146,7 +152,7 @@ export default function Header() {
         <NavLink to="/services" className={({ isActive }) => isActive ? 'active' : undefined} onClick={closeMenu}>Services</NavLink>
         <NavLink to="/case-studies" className={({ isActive }) => isActive ? 'active' : undefined} onClick={closeMenu}>Case Studies</NavLink>
         <NavLink to="/contact" className={({ isActive }) => isActive ? 'active' : undefined} onClick={closeMenu}>Contact Us</NavLink>
-        <Link className="header-quote" to="/contact" onClick={closeMenu}>Get a Quote</Link>
+        <Link className="header-quote btn-quote" to="/contact" onClick={closeMenu}>Get a Quote</Link>
       </nav>
     </header>
   );

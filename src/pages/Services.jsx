@@ -9,15 +9,16 @@ const serviceData = services;
 function ServiceRow({ service, index }) {
   return (
     <section
-      className={`services-row${index % 2 === 1 ? ' is-reversed' : ''}`}
+      className={`services-row${service.type === 'image' && service.orientation === 'landscape-wide' ? ' services-row--wide-image' : ''}${index % 2 === 1 ? ' is-reversed' : ''}`}
       id={service.slug}
     >
       <ServiceMedia
-        type={service.video ? 'video' : 'image'}
-        src={service.video || service.image}
+        type={service.type || (service.video ? 'video' : 'image')}
+        src={service.src || service.video || service.image}
         poster={service.poster || service.image}
         alt={service.alt}
         orientation={service.orientation}
+        objectPosition={service.objectPosition}
         className="service-reveal"
       />
       <div className="services-copy service-reveal">
@@ -27,7 +28,7 @@ function ServiceRow({ service, index }) {
         {service.points?.length > 0 && (
           <ul>{service.points.map((point) => <li key={point}>{point}</li>)}</ul>
         )}
-        <Link className="services-quote" to="/contact">Get a quote</Link>
+        <Link className="services-quote btn-quote" to="/contact">Get a quote</Link>
       </div>
     </section>
   );
@@ -128,7 +129,7 @@ export default function ServicesPage() {
 
       <section className="services-cta">
         <h2>Not sure which service fits your load?</h2>
-        <Link className="services-quote" to="/contact">Talk to our team</Link>
+        <Link className="services-quote btn-quote" to="/contact">Talk to our team</Link>
       </section>
     </main>
   );

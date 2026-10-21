@@ -1,8 +1,7 @@
 .case-studies-page { min-height: 100vh; padding: 140px max(24px,calc((100% - 1120px)/2)) 90px; background: #fff; color: #1d1d1f; font-family: Poppins,system-ui,-apple-system,"Segoe UI",sans-serif; }
-body:has(.case-studies-page) .header:not(.scrolled):not(.menu-open) { --logo-sq-bg: #d6221a; --logo-sq-fg: #fff; --quote-bg: #d6221a; --quote-fg: #fff; --text: #1d1d1f; background: #fff; border-bottom: 1px solid #eee; box-shadow: 0 2px 14px rgba(0,0,0,.08); }
-body:has(.case-studies-page) .header:not(.scrolled):not(.menu-open) .header-logo,body:has(.case-studies-page) .header:not(.scrolled):not(.menu-open) .header-logo-name small,body:has(.case-studies-page) .header:not(.scrolled):not(.menu-open) .header-nav a { color: #1d1d1f; text-shadow: none; }
-body:has(.case-studies-page) .header:not(.scrolled):not(.menu-open) .header-logo-name small { color: #555; }
-body:has(.case-studies-page) .header:not(.scrolled) .header-nav a.active { color: #d6221a; border-bottom-color: #d6221a; }
+body:has(.case-studies-page) .header:not(.scrolled):not(.menu-open) { --text: #1d1d1f; background: #fff; border-bottom: 1px solid #eee; box-shadow: 0 2px 14px rgba(0,0,0,.08); }
+body:has(.case-studies-page) .header:not(.scrolled):not(.menu-open) .header-nav a:not(.btn-quote) { color: #1d1d1f; text-shadow: none; }
+body:has(.case-studies-page) .header:not(.scrolled) .header-nav a:not(.btn-quote).active { color: #d6221a; border-bottom-color: #d6221a; }
 .case-studies-hero { max-width: 760px; margin-bottom: 42px; }
 .case-studies-eyebrow { margin: 0 0 10px; color: #d6221a; font-size: 12px; font-weight: 800; letter-spacing: .14em; }
 .case-studies-hero h1 { margin: 0 0 12px; font-size: clamp(38px,5vw,58px); font-weight: 850; letter-spacing: -.045em; line-height: 1.08; }

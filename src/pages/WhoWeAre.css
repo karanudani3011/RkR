@@ -1,9 +1,8 @@
 .who-page { --who-red: #d6221a; --who-grey: #f2f2f2; --who-text: #1d1d1f; min-height: 100vh; overflow-x: clip; background: #fff; color: var(--who-text); font-family: Poppins, system-ui, -apple-system, "Segoe UI", sans-serif; }
 .who-page *, .who-page *::before, .who-page *::after { box-sizing: border-box; }
 .who-wrap { width: min(1120px,calc(100% - 40px)); margin: 0 auto; }
-body:has(.who-page) .header:not(.scrolled):not(.menu-open) { --logo-sq-bg: #d6221a; --logo-sq-fg: #fff; --quote-bg: #d6221a; --quote-fg: #fff; --text: #1d1d1f; background: #fff; border-bottom: 1px solid #eee; box-shadow: 0 2px 14px rgba(0,0,0,.08); }
-body:has(.who-page) .header:not(.scrolled):not(.menu-open) .header-logo, body:has(.who-page) .header:not(.scrolled):not(.menu-open) .header-logo-name small, body:has(.who-page) .header:not(.scrolled):not(.menu-open) .header-nav a { color: #1d1d1f; text-shadow: none; }
-body:has(.who-page) .header:not(.scrolled):not(.menu-open) .header-logo-name small { color: #555; }
+body:has(.who-page) .header:not(.scrolled):not(.menu-open) { --text: #1d1d1f; background: #fff; border-bottom: 1px solid #eee; box-shadow: 0 2px 14px rgba(0,0,0,.08); }
+body:has(.who-page) .header:not(.scrolled):not(.menu-open) .header-nav a:not(.btn-quote) { color: #1d1d1f; text-shadow: none; }
 body:has(.who-page) .header:not(.scrolled):not(.menu-open) .header-menu-toggle span { background: #1d1d1f; filter: none; }
 .who-hero { padding: 112px 0 42px; background: #fff; }
 .who-breadcrumb { display: inline-flex; align-items: center; gap: 9px; padding: 7px 14px; border: 1px solid var(--who-red); border-radius: 999px; color: var(--who-red); font-size: 13px; font-weight: 650; text-decoration: none; }

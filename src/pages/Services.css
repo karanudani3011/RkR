@@ -4,21 +4,14 @@
 
 /* The shared transparent header needs a white-page treatment on this route. */
 body:has(.services-page) .header:not(.scrolled):not(.menu-open) {
-  --logo-sq-bg: #D61F10;
-  --logo-sq-fg: #fff;
-  --quote-bg: #D61F10;
-  --quote-fg: #fff;
   --text: #1A1A1A;
   background: #fff;
   border-bottom: 1px solid #F0DCD8;
   box-shadow: 0 2px 14px rgba(0,0,0,.10);
 }
-body:has(.services-page) .header:not(.scrolled):not(.menu-open) .header-logo,
-body:has(.services-page) .header:not(.scrolled):not(.menu-open) .header-logo-name small { color: #1A1A1A; text-shadow: none; }
-body:has(.services-page) .header:not(.scrolled):not(.menu-open) .header-logo-name small { color: #555; }
-body:has(.services-page) .header:not(.scrolled):not(.menu-open) .header-nav a { color: #1A1A1A; text-shadow: none; }
+body:has(.services-page) .header:not(.scrolled):not(.menu-open) .header-nav a:not(.btn-quote) { color: #1A1A1A; text-shadow: none; }
 body:has(.services-page) .header:not(.scrolled):not(.menu-open) .header-menu-toggle span { background: #1A1A1A; filter: none; }
-body:has(.services-page) .header .header-nav a.active { color: #D61F10; border-bottom: 2px solid #D61F10; padding-bottom: 8px; }
+body:has(.services-page) .header .header-nav a:not(.btn-quote).active { color: #D61F10; border-bottom: 2px solid #D61F10; padding-bottom: 8px; }
 
 .services-hero { padding: 112px 0 38px; background: #fff; }
 .services-breadcrumb { display: inline-flex; align-items: center; gap: 9px; padding: 7px 14px; border: 1px solid #D61F10; border-radius: 999px; color: #D61F10; font-size: 13px; font-weight: 650; text-decoration: none; }
@@ -38,6 +31,10 @@ body:has(.services-page) .header .header-nav a.active { color: #D61F10; border-b
 .services-row { display: grid; grid-template-columns: minmax(0,2fr) minmax(0,3fr); align-items: center; gap: clamp(30px,6vw,72px); padding: 60px 0; border-bottom: 1px solid #e9e5e4; scroll-margin-top: 148px; }
 .services-row:nth-child(even) .services-panel { order: 2; }
 .services-row:nth-child(even) .services-copy { order: 1; }
+.services-row.services-row--wide-image { grid-template-columns: minmax(0,1fr) minmax(0,1.3fr); }
+.services-row.services-row--wide-image .services-panel { order: 2; width: 100%; max-width: none; aspect-ratio: 16 / 9; margin-inline: 0; }
+.services-row.services-row--wide-image .services-copy { order: 1; }
+.services-panel.service-media--landscape { width: 100%; height: auto; max-width: none; aspect-ratio: 16 / 9; margin-inline: 0; }
 .services-panel { position: relative; width: 100%; aspect-ratio: 4/3; overflow: hidden; border: 1px solid #e4e4ea; border-radius: 16px; background: #f5f5f5; box-shadow: 0 10px 20px rgba(0,0,0,.1); }
 .services-panel.orientation-portrait { width: 100%; max-width: 360px; aspect-ratio: 3/4; margin-inline: auto; }
 .services-panel.orientation-landscape { aspect-ratio: 4/3; }
@@ -50,10 +47,6 @@ body:has(.services-page) .header .header-nav a.active { color: #D61F10; border-b
 .services-video { display: block; width: 100%; height: 100%; object-fit: cover; }
 .services-video-fallback { position: absolute; z-index: 1; inset: 0; display: block; width: 100%; height: 100%; object-fit: cover; }
 .services-video-fallback-label { display: grid; place-items: center; padding: 24px; color: #fff; text-align: center; }
-
-/* Lowbed trailer video (Heavy & Specialised Transport) */
-.services-panel-lowbed { aspect-ratio: 16 / 9; border: 1px solid #e4e4ea; border-radius: 16px; overflow: hidden; box-shadow: 0 8px 32px rgba(0,0,0,.12); background: #0d0d0d; }
-.services-video-lowbed { display: block; width: 100%; height: 100%; object-fit: cover; }
 
 .services-road { position: absolute; z-index: 2; right: 0; bottom: 0; left: 0; height: 34px; background: #2a2b2f; }
 .services-road::after { content: ""; position: absolute; top: 16px; right: 0; left: 0; height: 2px; background: repeating-linear-gradient(90deg,#fff 0 22px,transparent 22px 40px); animation: services-road-dash 1.2s linear infinite; }
@@ -72,8 +65,7 @@ body:has(.services-page) .header .header-nav a.active { color: #D61F10; border-b
 .services-copy ul { display: grid; gap: 9px; margin: 0 0 22px; padding: 0; list-style: none; }
 .services-copy li { position: relative; padding-left: 26px; color: #292a30; line-height: 1.5; }
 .services-copy li::before { position: absolute; top: .37em; left: 2px; width: 12px; height: 7px; border-bottom: 2.5px solid #D61F10; border-left: 2.5px solid #D61F10; content: ""; transform: rotate(-45deg); }
-.services-quote { display: inline-flex; align-items: center; justify-content: center; min-height: 44px; padding: 10px 21px; border-radius: 999px; background: #D61F10; color: #fff; font-size: 14px; font-weight: 750; text-decoration: none; transition: background .2s,transform .2s; }
-.services-quote:hover,.services-quote:focus-visible { background: #8F111A; transform: translateY(-2px); }
+.services-quote { display: inline-flex; align-items: center; justify-content: center; text-decoration: none; }
 
 .services-cta { padding: 54px 20px 62px; border-top: 1px solid #eee8e7; background: #FFF4F0; text-align: center; }
 .services-cta h2 { margin: 0 0 18px; color: #1A1A1A; font-size: clamp(24px,3vw,34px); }
@@ -96,7 +88,9 @@ body:has(.services-page) .header .header-nav a.active { color: #D61F10; border-b
   .services-copy { order: 2; }
   .services-panel { order: 1; max-width: 320px; margin-inline: auto; }
   .services-panel.orientation-portrait { max-width: 320px; }
-  .services-panel-lowbed { order: 1; aspect-ratio: 16/9; width: 100%; }
+  .services-row.services-row--wide-image { grid-template-columns: 1fr; }
+  .services-row.services-row--wide-image .services-panel { order: 1; width: 100%; max-width: none; aspect-ratio: 16 / 9; margin-inline: 0; }
+  .services-row.services-row--wide-image .services-copy { order: 2; }
   .services-panel-video.is-portrait-video { max-width: 300px; }
   .services-copy h2 { font-size: 27px; }
   .services-chip-list { width: calc(100% - 32px); }
@@ -105,6 +99,5 @@ body:has(.services-page) .header .header-nav a.active { color: #D61F10; border-b
 @media (prefers-reduced-motion: reduce) {
   .service-reveal { opacity: 1; transform: none; transition: none; }
   .services-road::after,.services-truck,.services-wheel,.service-cloud,.service-sun-rays,.service-turbine-spin { animation: none !important; }
-  .services-chip-list a,.services-quote { transition: none; }
-  .services-video-lowbed { animation: none !important; }
+  .services-chip-list a { transition: none; }
 }

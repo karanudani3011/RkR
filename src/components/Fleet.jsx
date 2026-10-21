@@ -110,9 +110,7 @@ export default function Fleet() {
                   <rect x="10" y="40" width="320" height="118" rx="4" fill="var(--truck-steel)" />
                   <path d="M26 44V154M42 44V154M58 44V154M74 44V154M90 44V154M106 44V154M122 44V154M138 44V154M154 44V154M170 44V154M186 44V154M202 44V154M218 44V154M234 44V154M250 44V154M266 44V154M282 44V154M298 44V154M314 44V154" stroke="var(--truck-silver)" strokeOpacity=".55" strokeWidth="2" />
                   <rect x="10" y="40" width="320" height="118" rx="4" fill="url(#sh)" />
-                  <text x="170" y="112" textAnchor="middle" fontFamily="system-ui,sans-serif" fontWeight="800" fontSize="30" fill="var(--red)">
-                    RKR ROADWAYS
-                  </text>
+                  <image href="/rkr-logo-color.png" x="58" y="39" width="224" height="120" preserveAspectRatio="xMidYMid meet" />
                   <use className="fleet-cab" href="#fcab" x="336" y="22" width="142" height="156" />
                   <use className="sp" href="#whl" x="41" y="152" width="38" height="38" style={{ transformOrigin: '60px 171px' }} />
                   <use className="sp" href="#whl" x="83" y="152" width="38" height="38" style={{ transformOrigin: '102px 171px' }} />
@@ -196,7 +194,7 @@ export default function Fleet() {
               <small id="mp">{percent}% of this truck's capacity used</small>
             </div>
 
-            <a className="btn" href="#quote">
+            <a className="btn btn-quote" href="#quote">
               Get a quote for this truck
             </a>
             <small className="fnt">

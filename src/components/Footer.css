@@ -11,19 +11,16 @@
 .site-footer .rkr-footer-moon{position:absolute;right:6%;top:26px;width:60px;height:60px;border-radius:50%;background:radial-gradient(circle at 36% 34%,#fff,#ffe3e0 72%);box-shadow:0 0 36px 12px #ffffff59,0 0 120px 40px #ffffff26;animation:fl 6s ease-in-out infinite alternate}
 @keyframes fl{to{transform:translateY(6px)}}
 .site-footer .rkr-footer-content{position:relative;z-index:2;max-width:1200px;margin:0 auto;padding:40px 24px 0;display:grid;grid-template-columns:1.4fr 1fr 1.2fr;gap:40px}
-.site-footer .rkr-footer-logo{display:flex;align-items:center;gap:10px}
-.site-footer .rkr-footer-sq{display:flex;gap:3px}
-.site-footer .rkr-footer-sq b{width:22px;height:22px;display:grid;place-items:center;background:var(--red, #D61F10);color:#fff;font-size:12px;font-weight:800}
-.site-footer .rkr-footer-nm{color:#fff;font-weight:800;font-size:16px;line-height:1.1}
-.site-footer .rkr-footer-nm small{display:block;font-size:9px;letter-spacing:.3em;font-weight:500;margin-top:2px}
+.site-footer .rkr-footer-logo{display:flex;align-items:center}
+.site-footer .rkr-footer-logo .site-logo{width:auto;height:44px;object-fit:contain}
+@media (max-width:767px){.site-footer .rkr-footer-logo .site-logo{height:36px}}
 .site-footer .rkr-footer-tag{margin:16px 0 20px;max-width:300px;line-height:1.55;font-size:15px;color:#ffd9d5}
-.site-footer .rkr-footer-btn{display:inline-block;padding:13px 26px;border-radius:999px;background:linear-gradient(#ff4b3a,#d61f10);color:#fff;font-weight:800;font-size:15px;text-decoration:none;box-shadow:0 8px 22px #ff3b2a55;transition:transform .25s,box-shadow .25s}
-.site-footer .rkr-footer-btn:hover,.site-footer .rkr-footer-btn:focus-visible{transform:translateY(-3px);box-shadow:0 12px 28px #ff3b2a80}
+.site-footer .rkr-footer-btn{display:inline-flex;text-decoration:none}
 .site-footer h4{margin:2px 0 16px;color:#fff;font-size:14px;letter-spacing:.16em;text-transform:uppercase}
 .site-footer ul{list-style:none;margin:0;padding:0}
 .site-footer li{margin:0 0 11px}
 .site-footer p{margin:0 0 11px;font-size:15px}
-.site-footer a{color:#ffe6e3;text-decoration:none;font-size:15px;transition:color .2s}
+.site-footer a:not(.btn-quote){color:#ffe6e3;text-decoration:none;font-size:15px;transition:color .2s}
 .site-footer li a:hover,.site-footer li a:focus-visible,.site-footer .rkr-footer-mail:hover{color:#fff}
 .site-footer .rkr-footer-contact p{display:flex;align-items:center;gap:12px;color:#fff;max-width:360px}
 .site-footer .rkr-footer-contact p:last-child{align-items:flex-start}

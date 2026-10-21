@@ -49,11 +49,12 @@ function ServiceCard({ service, reduceMotion }) {
       whileHover={reduceMotion ? undefined : { y: -6, transition: { duration: 0.25, ease: 'easeOut' } }}
     >
       <ServiceMedia
-        type={service.video ? 'video' : 'image'}
-        src={service.video || service.image}
+        type={service.type || (service.video ? 'video' : 'image')}
+        src={service.src || service.video || service.image}
         poster={service.poster || service.image}
         alt={service.alt}
         orientation={service.orientation}
+        objectPosition={service.objectPosition}
       />
       <div className="sb">
         <div className="ib" aria-hidden="true">{service.icon}</div>
