@@ -9,6 +9,7 @@ import WhoWeArePage from '../pages/WhoWeAre.jsx';
 import OurClientsPage from '../pages/OurClients.jsx';
 import CaseStudies from '../pages/CaseStudies.jsx';
 import NotFound from '../pages/NotFound.jsx';
+import TeamPage from '../pages/Team.jsx';
 import { ScrollToTop, HashScroll } from './ScrollToTop.jsx';
 
 export default function App() {
@@ -27,6 +28,7 @@ export default function App() {
         <Route path="/about/who-we-are" element={<WhoWeArePage />} />
         <Route path="/about/our-clients" element={<OurClientsPage />} />
         <Route path="/about/safety" element={<SafetyPage />} />
+        <Route path="/team" element={<TeamPage />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
       <Footer />

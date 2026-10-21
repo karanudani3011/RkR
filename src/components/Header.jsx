@@ -6,7 +6,7 @@ import './Header.css';
 const aboutMenu = [
   { label: 'Who We Are?', href: '/about/who-we-are', route: true },
   { label: 'Our Clients', href: '/about/our-clients', route: true },
-  { label: 'Team', href: '#team' },
+  { label: 'Team', href: '/team', route: true },
   { label: 'Safety', href: '/about/safety', route: true },
 ];
 
