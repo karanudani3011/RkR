@@ -80,21 +80,21 @@ export default function Footer() {
         <div className="rkr-footer-contact">
           <h4>Contact</h4>
           <p>
-            <FaPhoneAlt aria-hidden="true" />
+            <span className="rkr-footer-icon-badge"><FaPhoneAlt aria-hidden="true" /></span>
             <span>
               <strong>Mobile No:</strong>{' '}
               <a href="tel:8238477779">8238477779</a>
             </span>
           </p>
           <p>
-            <FaWhatsapp aria-hidden="true" />
+            <span className="rkr-footer-icon-badge"><FaWhatsapp aria-hidden="true" /></span>
             <span>
               <strong>WhatsApp:</strong>{' '}
               <a href={`tel:${WHATSAPP_TEL}`}>{WHATSAPP_DISPLAY}</a>
             </span>
           </p>
           <p>
-            <FaMapMarkerAlt aria-hidden="true" />
+            <span className="rkr-footer-icon-badge"><FaMapMarkerAlt aria-hidden="true" /></span>
             <span>
               <strong>Address:</strong>{' '}
               <a
