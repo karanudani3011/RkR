@@ -2,6 +2,8 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 import './OurClients.css';
 
 const names = [
+  'Indian Railways', 'Adani Green Energy Limited', 'Suzlon', 'JSW Energy',
+  'Reliance Industries Limited', 'PGVCL', 'KP Energy Limited', 'Larsen & Toubro',
   'Heben Cranes', 'SRP Crane Controls', 'RPPL Transformers', 'Boostflow Water', 'Onix Renewable', 'EQ',
   'Induct Crane', 'Monocraft', 'Gunatit Electropower', 'Embicon', 'Synergy Transformers', 'PMECH Engitech',
   'Incredible Machines', 'Mascot Electrotek', 'Alpa Infrastructure', 'Nova Cranes', 'Ganesh Cranes', 'Krishna LM',
@@ -19,26 +21,23 @@ const logoFiles = import.meta.glob('/src/assets/images/rkr/images/clients/*.{png
   import: 'default',
 });
 
-const slugify = (value) => value.toLowerCase().replace(/\s+/g, '-');
+const slugify = (value) => value.toLowerCase().replace(/&/g, 'and').replace(/\s+/g, '-');
 const logosBySlug = Object.fromEntries(Object.entries(logoFiles).map(([path, url]) => {
   const filename = path.split('/').pop();
   return [filename.replace(/\.[^.]+$/, '').toLowerCase(), url];
 }));
 
-function initials(name) {
-  return name.replace(/\s+/g, '').slice(0, 2).toUpperCase();
-}
-
 function ClientCard({ name, index, visibleRef }) {
   const [failed, setFailed] = useState(false);
-  const logo = logosBySlug[slugify(name)];
+  const clientSlug = slugify(name);
+  const logo = logosBySlug[clientSlug] || logosBySlug[clientSlug.replace(/-limited$/, '')];
   return (
     <article className="client-card" ref={visibleRef} style={{ '--client-stagger': `${(index % 12) * 55}ms` }}>
       <span className="client-number">{String(index + 1).padStart(2, '0')}</span>
       <div className="client-logo-area">
         {logo && !failed
           ? <img src={logo} alt={`${name} logo`} loading="lazy" decoding="async" onError={() => setFailed(true)} />
-          : <span className="client-initials" aria-label={`${name} logo`}>{initials(name)}</span>}
+          : <span className="client-logo-fallback">{name}</span>}
       </div>
       <p className="client-name">{name}</p>
     </article>
@@ -50,7 +49,15 @@ export default function OurClientsPage() {
   const gridRef = useRef(null);
   const filteredNames = useMemo(() => {
     const normalized = query.trim().toLowerCase();
-    return names.filter((name) => name.toLowerCase().includes(normalized));
+    const searchTerms = {
+      'Indian Railways': 'railways',
+      'Adani Green Energy Limited': 'adani',
+      'Reliance Industries Limited': 'reliance',
+      PGVCL: 'pgvcl',
+      'KP Energy Limited': 'kp',
+      'Larsen & Toubro': 'l&t larsen',
+    };
+    return names.filter((name) => `${name} ${searchTerms[name] || ''}`.toLowerCase().includes(normalized));
   }, [query]);
 
   useEffect(() => { document.title = 'Our Clients | RadheKrishna Roadways'; }, []);
@@ -81,8 +88,8 @@ export default function OurClientsPage() {
         <div className="clients-wrap clients-hero-inner">
           <p className="clients-eyebrow">ABOUT US</p>
           <h1>Our <span>Clients</span></h1>
-          <p className="clients-subline">Trusted by 54+ industry leaders across cranes, transformers, solar, roofing, machinery and more.</p>
-          <div className="clients-badge">54+ Trusted Clients</div>
+          <p className="clients-subline">Trusted by {names.length}+ industry leaders across cranes, transformers, solar, roofing, machinery and more.</p>
+          <div className="clients-badge">{names.length}+ Trusted Clients</div>
         </div>
         <div className="clients-road" aria-hidden="true"><span /></div>
       </section>
