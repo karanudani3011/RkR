@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react';
-import safetyHero from '../assets/safety-hero.mp4';
+import { useEffect } from 'react';
+import BackgroundVideo from '../components/BackgroundVideo.jsx';
 import './SafetyPage.css';
 
 const images = import.meta.glob('../assets/images/*', { eager: true, query: '?url', import: 'default' });
@@ -45,23 +45,19 @@ function Photo({ name, alt, position, pillar = false }) {
 }
 
 export default function SafetyPage() {
-  const [reducedMotion, setReducedMotion] = useState(() => window.matchMedia('(prefers-reduced-motion: reduce)').matches);
-
   useEffect(() => {
     document.title = 'Safety | RadheKrishna Roadways';
-    const query = window.matchMedia('(prefers-reduced-motion: reduce)');
-    const update = (event) => setReducedMotion(event.matches);
-    query.addEventListener?.('change', update);
-    return () => query.removeEventListener?.('change', update);
   }, []);
 
   return (
     <main className="safety-page">
       <section className="safety-hero">
-        <video className="safety-hero-video" autoPlay={!reducedMotion} muted loop playsInline preload="auto" aria-hidden="true" tabIndex={-1}>
-          <source src={safetyHero} type="video/mp4" />
-        </video>
-        <div className="safety-hero-copy">
+        <BackgroundVideo
+          src="/videos/safety-bg.mp4"
+          poster="/videos/safety-poster.jpg"
+          overlayClassName="bg-black/60"
+        />
+        <div className="safety-hero-copy relative z-10">
           <div className="safety-wrap">
             <h1>Every cargo, safely planned and responsibly delivered.</h1>
             <p>At RadheKrishna Roadways, every movement is guided by careful planning, trained teams and strict safety compliance, from the first survey to the final handover.</p>
