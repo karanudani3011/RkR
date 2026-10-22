@@ -19,4 +19,20 @@ export const caseStudies = [
     ],
     video: '/videos/case-study.mp4',
   },
+  {
+    id: 'adani-port-130ft-crane',
+    chipLabel: 'Adani Port',
+    category: 'ODC Transportation | Over Dimensional Cargo',
+    title: 'Transporting a 130-Foot Crane for Adani Port Projects',
+    client: 'HEBEN Cranes',
+    project: 'Adani Port Projects',
+    overview: "Radhekrishna Roadways undertook the transportation of an oversized 130-foot-long, 10-foot-wide crane weighing 40 tons for HEBEN Cranes' Adani Port Projects. Moving cargo of this scale requires careful transport planning, suitable trailer coordination and attention to route feasibility. Our specialized ODC logistics capabilities help address the challenges associated with transporting large industrial equipment.",
+    stats: [
+      { value: '130 ft x 10 ft', label: 'Cargo Dimensions' },
+      { value: '40 Ton', label: 'Cargo Weight' },
+      { value: 'ODC', label: 'Service' },
+    ],
+    video: '/videos/case-studies/adani-port-crane.mp4',
+    poster: '/videos/case-studies/adani-port-crane-poster.jpg',
+  },
 ];

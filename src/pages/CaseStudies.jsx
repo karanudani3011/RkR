@@ -134,13 +134,14 @@ function CaseStudyArticle({ study, index, reduceMotion }) {
         <span className="case-studies-category">{study.category}</span>
         <h2 id={`case-study-title-${study.id}`}>{study.title}</h2>
         <p className="case-studies-client">Client: {study.client}</p>
+        {study.project && <p className="case-studies-project">Project: {study.project}</p>}
         <span className="case-studies-detail-rule" aria-hidden="true" />
         <h3 className="case-studies-overview-label">Project Overview</h3>
         <p className="case-studies-overview">{study.overview}</p>
         <div className="case-studies-stats" aria-label={`${study.client} project statistics`}>
           {study.stats.map((stat) => (
             <div className="case-studies-stat" key={`${stat.label}-${stat.value}`}>
-              <strong>{stat.value}</strong>
+              <strong className={stat.value.length > 10 ? 'is-long' : undefined}>{stat.value}</strong>
               <span>{stat.label}</span>
             </div>
           ))}
@@ -205,7 +206,7 @@ export default function CaseStudies() {
           <div className="case-studies-chip-list">
             <a href="#case-studies-list">All</a>
             {caseStudies.map((study) => (
-              <a href={`#case-study-${study.id}`} key={study.id}>{study.client || study.title}</a>
+              <a href={`#case-study-${study.id}`} key={study.id}>{study.chipLabel || study.client || study.title}</a>
             ))}
           </div>
         </nav>
