@@ -138,7 +138,7 @@ export default function TeamPage() {
             <h2>Have cargo to move? Talk to our team.</h2>
             <div className="team-cta-actions">
               <Link className="btn-quote" to="/contact">Get a Quote</Link>
-              <a className="team-call-button" href={`tel:${PHONE_TEL}`}>Call Us</a>
+              <a className="team-call-button" href={PHONE_TEL}>Call Us</a>
             </div>
           </div>
         </div>

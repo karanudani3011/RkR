@@ -1,10 +1,9 @@
 import { useEffect, useState } from 'react';
 import './ContactPage.css';
 import ContactBanner from '../components/ContactBanner.jsx';
-import { WHATSAPP_DISPLAY, WHATSAPP_URL } from '../constants/contact.js';
+import { PHONE_DISPLAY, PHONE_TEL, WHATSAPP_DISPLAY, WHATSAPP_URL } from '../constants/contact.js';
 
 const CONTACT = {
-  phone: "8238477779",
   address: "OFFICE NO 321, ISCON PROZONE MALL, 150 FT RING ROAD, RAJKOT 360005",
   hours: "9:00 AM to 5:00 PM",
   holiday: "Wednesday"
@@ -118,8 +117,8 @@ const infoCards = [
   {
     icon: <FaPhoneAlt aria-hidden="true" />,
     title: 'Phone',
-    text: CONTACT.phone,
-    href: `tel:${CONTACT.phone}`,
+    text: PHONE_DISPLAY,
+    href: PHONE_TEL,
   },
   {
     icon: <FaWhatsapp aria-hidden="true" />,

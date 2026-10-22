@@ -21,7 +21,7 @@ function ContactIcon({ type }) {
 }
 
 const quickContacts = [
-  { type: 'phone', label: 'Call Us', value: PHONE_DISPLAY, href: `tel:${PHONE_TEL}` },
+  { type: 'phone', label: 'Call Us', value: PHONE_DISPLAY, href: PHONE_TEL },
   { type: 'whatsapp', label: 'WhatsApp', value: WHATSAPP_DISPLAY, href: WHATSAPP_URL, external: true },
   { type: 'email', label: 'Email', value: 'info@yourdomain.com', href: 'mailto:info@yourdomain.com' },
 ];

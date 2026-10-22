@@ -1,7 +1,7 @@
 import { useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import FooterScene from './FooterScene.jsx';
-import { WHATSAPP_DISPLAY, WHATSAPP_TEL } from '../constants/contact.js';
+import { PHONE_DISPLAY, PHONE_TEL, WHATSAPP_DISPLAY, WHATSAPP_TEL } from '../constants/contact.js';
 import './Footer.css';
 
 function FaPhoneAlt(props) {
@@ -77,7 +77,7 @@ export default function Footer() {
             <span className="rkr-footer-icon-badge"><FaPhoneAlt aria-hidden="true" /></span>
             <span>
               <strong>Mobile No:</strong>{' '}
-              <a href="tel:8238477779">8238477779</a>
+              <a href={PHONE_TEL}>{PHONE_DISPLAY}</a>
             </span>
           </p>
           <p>
