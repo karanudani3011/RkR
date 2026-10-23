@@ -9,6 +9,7 @@ const visionMission = [
     title: 'Vision',
     label: 'OUR VISION',
     icon: Eye,
+    number: '01',
     content: 'To become a trusted Pan-India leader in Heavy and Over-Dimensional Cargo (ODC) Logistics by setting benchmarks in safety, reliability, and operational excellence, while connecting industries and driving progress through seamless transportation solutions.',
     chips: ['Safety', 'Reliability', 'Operational Excellence'],
   },
@@ -16,6 +17,7 @@ const visionMission = [
     title: 'Mission',
     label: 'OUR MISSION',
     icon: Flag,
+    number: '02',
     content: 'To deliver the right vehicle, the right route, and the right execution for every shipment through expert planning, safe cargo handling, efficient route optimization, and timely delivery ensuring reliability, transparency, and customer satisfaction at every step.',
     chips: ['Right Vehicle', 'Right Route', 'Right Execution'],
   },
@@ -25,7 +27,7 @@ function VisionMissionCard({ item }) {
   const Icon = item.icon;
   return (
     <article
-      className={`vm-card vm-card--${item.title.toLowerCase()}`}
+      className="vm-card"
     >
       <div className="vm-content">
         <span className="vm-icon"><Icon size={27} strokeWidth={2.1} aria-hidden="true" /></span>
@@ -37,6 +39,7 @@ function VisionMissionCard({ item }) {
           {item.chips.map((chip) => <li key={chip}>{chip}</li>)}
         </ul>
       </div>
+      <span className="vm-number" aria-hidden="true">{item.number}</span>
       {item.title === 'Mission' && <span className="vm-watermark" aria-hidden="true">RKR</span>}
       <span className="vm-road" aria-hidden="true" />
     </article>
