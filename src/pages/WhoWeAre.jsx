@@ -23,16 +23,23 @@ const visionMission = [
 
 function FlipCard({ item, index, peek }) {
   const [flipped, setFlipped] = useState(false);
+  const [peekComplete, setPeekComplete] = useState(false);
   const Icon = item.icon;
   return (
     <button
       type="button"
-      className={`flip-card${peek ? ` is-peeking peek-${index}` : ''}`}
+      className={`flip-card${peek && !peekComplete ? ` is-peeking peek-${index}` : ''}`}
       aria-pressed={flipped}
       aria-label={`${flipped ? 'Flip back to' : 'Flip to read our'} ${item.title}`}
-      onClick={() => setFlipped((value) => !value)}
+      onClick={() => {
+        setPeekComplete(true);
+        setFlipped((value) => !value);
+      }}
     >
-      <span className={`flip-inner${flipped ? ' is-flipped' : ''}`}>
+      <span
+        className={`flip-inner${flipped ? ' is-flipped' : ''}`}
+        onAnimationEnd={() => setPeekComplete(true)}
+      >
         <span className="flip-face front" aria-hidden={flipped}>
           <span className="flip-icon"><Icon size={27} strokeWidth={2.1} aria-hidden="true" /></span>
           <span className="flip-title">{item.title}</span>
