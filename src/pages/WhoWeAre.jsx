@@ -1,7 +1,78 @@
-import { useEffect } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import { Eye, Flag, RotateCcw } from 'lucide-react';
 import StatCard from '../components/StatCard.jsx';
 import JourneyTimeline from '../components/JourneyTimeline.jsx';
 import './WhoWeAre.css';
+
+const visionMission = [
+  {
+    title: 'Vision',
+    teaser: 'Where we are headed.',
+    label: 'OUR VISION',
+    icon: Eye,
+    content: 'To become a trusted Pan-India leader in Heavy and Over-Dimensional Cargo (ODC) Logistics by setting benchmarks in safety, reliability, and operational excellence, while connecting industries and driving progress through seamless transportation solutions.',
+  },
+  {
+    title: 'Mission',
+    teaser: 'How we deliver every day.',
+    label: 'OUR MISSION',
+    icon: Flag,
+    content: 'To deliver the right vehicle, the right route, and the right execution for every shipment through expert planning, safe cargo handling, efficient route optimization, and timely delivery ensuring reliability, transparency, and customer satisfaction at every step.',
+  },
+];
+
+function FlipCard({ item, index, peek }) {
+  const [flipped, setFlipped] = useState(false);
+  const Icon = item.icon;
+  return (
+    <button
+      type="button"
+      className={`flip-card${peek ? ` is-peeking peek-${index}` : ''}`}
+      aria-pressed={flipped}
+      aria-label={`${flipped ? 'Flip back to' : 'Flip to read our'} ${item.title}`}
+      onClick={() => setFlipped((value) => !value)}
+    >
+      <span className={`flip-inner${flipped ? ' is-flipped' : ''}`}>
+        <span className="flip-face front" aria-hidden={flipped}>
+          <span className="flip-icon"><Icon size={27} strokeWidth={2.1} aria-hidden="true" /></span>
+          <span className="flip-title">{item.title}</span>
+          <span className="flip-teaser">{item.teaser}</span>
+          <span className="flip-hint">Tap to read more <RotateCcw size={14} aria-hidden="true" /></span>
+        </span>
+        <span className="flip-face back" aria-hidden={!flipped}>
+          <span className="flip-watermark" aria-hidden="true">RKR</span>
+          <span className="flip-label">{item.label}</span>
+          <span className="flip-bar" />
+          <span className="flip-copy">{item.content}</span>
+          <span className="flip-back-hint">Tap to go back</span>
+        </span>
+      </span>
+      <span className="flip-live" aria-live="polite">{flipped ? `${item.title} details` : `${item.title} summary`}</span>
+    </button>
+  );
+}
+
+function VisionMissionCards() {
+  const sectionRef = useRef(null);
+  const [peek, setPeek] = useState(false);
+  useEffect(() => {
+    const section = sectionRef.current;
+    if (!section || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return undefined;
+    const observer = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) {
+        setPeek(true);
+        observer.disconnect();
+      }
+    }, { threshold: 0.25 });
+    observer.observe(section);
+    return () => observer.disconnect();
+  }, []);
+  return (
+    <div className="who-value-grid vm-section" ref={sectionRef}>
+      {visionMission.map((item, index) => <FlipCard key={item.title} item={item} index={index} peek={peek} />)}
+    </div>
+  );
+}
 
 export default function WhoWeArePage() {
   useEffect(() => { document.title = 'Who We Are? | RadheKrishna Roadways'; }, []);
@@ -33,10 +104,7 @@ export default function WhoWeArePage() {
       <section className="who-values">
         <div className="who-wrap">
           <div className="who-section-heading"><h2>Vision &amp; Mission</h2></div>
-          <div className="who-value-grid">
-            <article className="who-value-card"><h3>Vision</h3><p>To become a trusted Pan-India name in Heavy &amp; ODC Logistics.</p></article>
-            <article className="who-value-card"><h3>Mission</h3><p>Right Vehicle. Right Route. Right Execution. Every Time.</p></article>
-          </div>
+          <VisionMissionCards />
         </div>
       </section>
 
