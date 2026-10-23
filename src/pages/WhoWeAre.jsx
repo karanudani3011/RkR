@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Eye, Flag } from 'lucide-react';
 import StatCard from '../components/StatCard.jsx';
 import JourneyTimeline from '../components/JourneyTimeline.jsx';
@@ -10,56 +10,64 @@ const visionMission = [
     label: 'OUR VISION',
     icon: Eye,
     content: 'To become a trusted Pan-India leader in Heavy and Over-Dimensional Cargo (ODC) Logistics by setting benchmarks in safety, reliability, and operational excellence, while connecting industries and driving progress through seamless transportation solutions.',
+    chips: ['Safety', 'Reliability', 'Operational Excellence'],
   },
   {
     title: 'Mission',
     label: 'OUR MISSION',
     icon: Flag,
     content: 'To deliver the right vehicle, the right route, and the right execution for every shipment through expert planning, safe cargo handling, efficient route optimization, and timely delivery ensuring reliability, transparency, and customer satisfaction at every step.',
+    chips: ['Right Vehicle', 'Right Route', 'Right Execution'],
   },
 ];
 
 function VisionMissionCard({ item }) {
-  const [isOpen, setIsOpen] = useState(false);
   const Icon = item.icon;
-  const toggleOnTouch = () => {
-    if (window.matchMedia('(hover: none)').matches) setIsOpen((open) => !open);
-  };
-  const handleKeyDown = (event) => {
-    if (event.key === 'Enter' || event.key === ' ') {
-      event.preventDefault();
-      setIsOpen((open) => !open);
-    }
-  };
   return (
     <article
-      className={`vm-card${isOpen ? ' is-open' : ''}`}
-      tabIndex={0}
-      role="button"
-      aria-label={`${item.title}: ${item.content}`}
-      aria-expanded={isOpen}
-      onClick={toggleOnTouch}
-      onKeyDown={handleKeyDown}
+      className={`vm-card vm-card--${item.title.toLowerCase()}`}
     >
-      <div className="vm-front">
+      <div className="vm-content">
         <span className="vm-icon"><Icon size={27} strokeWidth={2.1} aria-hidden="true" /></span>
+        <p className="vm-eyebrow">{item.label}</p>
         <h3 className="vm-title">{item.title}</h3>
-        <p className="vm-hint"><span className="vm-hover-hint">Hover to read more</span><span className="vm-touch-hint">Tap to read more</span></p>
-      </div>
-      <div className="vm-reveal" aria-hidden="true">
-        <span className="vm-watermark">RKR</span>
-        <span className="vm-label">{item.label}</span>
-        <span className="vm-bar" />
+        <span className="vm-bar" aria-hidden="true" />
         <p className="vm-copy">{item.content}</p>
+        <ul className="vm-chips" aria-label={`${item.title} principles`}>
+          {item.chips.map((chip) => <li key={chip}>{chip}</li>)}
+        </ul>
       </div>
-      <span className="vm-sr-only">{item.content}</span>
+      <span className="vm-number" aria-hidden="true">{item.title === 'Vision' ? '01' : '02'}</span>
+      {item.title === 'Mission' && <span className="vm-watermark" aria-hidden="true">RKR</span>}
+      <span className="vm-road" aria-hidden="true" />
     </article>
   );
 }
 
 function VisionMissionCards() {
+  const sectionRef = useRef(null);
+  const [motionState, setMotionState] = useState('waiting');
+
+  useEffect(() => {
+    const section = sectionRef.current;
+    if (!section) return undefined;
+    const reducedMotion = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
+    if (typeof IntersectionObserver === 'undefined' || reducedMotion) {
+      setMotionState('ready');
+      return undefined;
+    }
+    const observer = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) {
+        setMotionState('visible');
+        observer.disconnect();
+      }
+    }, { threshold: 0.2 });
+    observer.observe(section);
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <div className="who-value-grid vm-section">
+    <div className={`who-value-grid vm-section${motionState === 'waiting' ? ' vm-section--waiting' : ''}${motionState === 'visible' ? ' vm-section--visible' : ''}`} ref={sectionRef}>
       {visionMission.map((item) => <VisionMissionCard key={item.title} item={item} />)}
     </div>
   );
