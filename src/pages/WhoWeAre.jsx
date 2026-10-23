@@ -37,7 +37,6 @@ function VisionMissionCard({ item }) {
           {item.chips.map((chip) => <li key={chip}>{chip}</li>)}
         </ul>
       </div>
-      <span className="vm-number" aria-hidden="true">{item.title === 'Vision' ? '01' : '02'}</span>
       {item.title === 'Mission' && <span className="vm-watermark" aria-hidden="true">RKR</span>}
       <span className="vm-road" aria-hidden="true" />
     </article>
