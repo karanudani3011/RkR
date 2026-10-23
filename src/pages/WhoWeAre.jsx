@@ -1,5 +1,5 @@
-import { useEffect, useRef, useState } from 'react';
-import { Eye, Flag, RotateCcw } from 'lucide-react';
+import { useEffect, useState } from 'react';
+import { Eye, Flag } from 'lucide-react';
 import StatCard from '../components/StatCard.jsx';
 import JourneyTimeline from '../components/JourneyTimeline.jsx';
 import './WhoWeAre.css';
@@ -7,76 +7,60 @@ import './WhoWeAre.css';
 const visionMission = [
   {
     title: 'Vision',
-    teaser: 'Where we are headed.',
     label: 'OUR VISION',
     icon: Eye,
     content: 'To become a trusted Pan-India leader in Heavy and Over-Dimensional Cargo (ODC) Logistics by setting benchmarks in safety, reliability, and operational excellence, while connecting industries and driving progress through seamless transportation solutions.',
   },
   {
     title: 'Mission',
-    teaser: 'How we deliver every day.',
     label: 'OUR MISSION',
     icon: Flag,
     content: 'To deliver the right vehicle, the right route, and the right execution for every shipment through expert planning, safe cargo handling, efficient route optimization, and timely delivery ensuring reliability, transparency, and customer satisfaction at every step.',
   },
 ];
 
-function FlipCard({ item, index, peek }) {
-  const [flipped, setFlipped] = useState(false);
-  const [peekComplete, setPeekComplete] = useState(false);
+function VisionMissionCard({ item }) {
+  const [isOpen, setIsOpen] = useState(false);
   const Icon = item.icon;
+  const toggleOnTouch = () => {
+    if (window.matchMedia('(hover: none)').matches) setIsOpen((open) => !open);
+  };
+  const handleKeyDown = (event) => {
+    if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault();
+      setIsOpen((open) => !open);
+    }
+  };
   return (
-    <button
-      type="button"
-      className={`flip-card${peek && !peekComplete ? ` is-peeking peek-${index}` : ''}`}
-      aria-pressed={flipped}
-      aria-label={`${flipped ? 'Flip back to' : 'Flip to read our'} ${item.title}`}
-      onClick={() => {
-        setPeekComplete(true);
-        setFlipped((value) => !value);
-      }}
+    <article
+      className={`vm-card${isOpen ? ' is-open' : ''}`}
+      tabIndex={0}
+      role="button"
+      aria-label={`${item.title}: ${item.content}`}
+      aria-expanded={isOpen}
+      onClick={toggleOnTouch}
+      onKeyDown={handleKeyDown}
     >
-      <span
-        className={`flip-inner${flipped ? ' is-flipped' : ''}`}
-        onAnimationEnd={() => setPeekComplete(true)}
-      >
-        <span className="flip-face front" aria-hidden={flipped}>
-          <span className="flip-icon"><Icon size={27} strokeWidth={2.1} aria-hidden="true" /></span>
-          <span className="flip-title">{item.title}</span>
-          <span className="flip-teaser">{item.teaser}</span>
-          <span className="flip-hint">Tap to read more <RotateCcw size={14} aria-hidden="true" /></span>
-        </span>
-        <span className="flip-face back" aria-hidden={!flipped}>
-          <span className="flip-watermark" aria-hidden="true">RKR</span>
-          <span className="flip-label">{item.label}</span>
-          <span className="flip-bar" />
-          <span className="flip-copy">{item.content}</span>
-          <span className="flip-back-hint">Tap to go back</span>
-        </span>
-      </span>
-      <span className="flip-live" aria-live="polite">{flipped ? `${item.title} details` : `${item.title} summary`}</span>
-    </button>
+      <div className="vm-front">
+        <span className="vm-icon"><Icon size={27} strokeWidth={2.1} aria-hidden="true" /></span>
+        <h3 className="vm-title">{item.title}</h3>
+        <p className="vm-hint"><span className="vm-hover-hint">Hover to read more</span><span className="vm-touch-hint">Tap to read more</span></p>
+      </div>
+      <div className="vm-reveal" aria-hidden="true">
+        <span className="vm-watermark">RKR</span>
+        <span className="vm-label">{item.label}</span>
+        <span className="vm-bar" />
+        <p className="vm-copy">{item.content}</p>
+      </div>
+      <span className="vm-sr-only">{item.content}</span>
+    </article>
   );
 }
 
 function VisionMissionCards() {
-  const sectionRef = useRef(null);
-  const [peek, setPeek] = useState(false);
-  useEffect(() => {
-    const section = sectionRef.current;
-    if (!section || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return undefined;
-    const observer = new IntersectionObserver(([entry]) => {
-      if (entry.isIntersecting) {
-        setPeek(true);
-        observer.disconnect();
-      }
-    }, { threshold: 0.25 });
-    observer.observe(section);
-    return () => observer.disconnect();
-  }, []);
   return (
-    <div className="who-value-grid vm-section" ref={sectionRef}>
-      {visionMission.map((item, index) => <FlipCard key={item.title} item={item} index={index} peek={peek} />)}
+    <div className="who-value-grid vm-section">
+      {visionMission.map((item) => <VisionMissionCard key={item.title} item={item} />)}
     </div>
   );
 }
